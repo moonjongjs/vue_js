@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>뷰 인스턴스</title>
+    <script src="./js/vue/vue.js"></script>
+    <style>
+
+        h1, #app {text-align:center;}
+    </style>
+</head>
+<body>
+    
+    <h1>뷰 인스턴스</h1>
+    
+    <div id="app">
+        {{ msg }}
+    </div>
+
+    <script>
+
+        new Vue({
+            el:`#app`,
+            data:{
+                msg:'뷰 인스턴스 data 속성'
+            }
+        });
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>뷰 인스턴스</title>
+    <script src="./js/vue/vue.js"></script>
+    <style>
+
+        h1, #app {text-align:center;}
+    </style>
+</head>
+<body>
+    
+    <h1>뷰 인스턴스</h1>
+    
+    <div id="app" v-on:click='event1Fn'>
+        {{ msg  }}
+    </div>
+
+    <script>
+
+        new Vue({
+            el:`#app`,
+            data:{
+                msg:'내용'
+            },
+            methods:{                
+                event1Fn: function(){
+                    console.log('버튼 clcik 이벤트!');
+                    this.msg += ' 첫번째 항목 추가 내용입니다.';
+                }
+               
+            }
+        });
+
+    </script>
+
+</body>
+</html>

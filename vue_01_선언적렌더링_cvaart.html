@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/lib/jquery-1.12.4.min.js"></script>
+    <script src="./js/vue/vue.js"></script>
+
+    <style>
+        body {
+            text-align:center;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>선언적 렌더링</h1>
+    <br>
+    <br>
+
+    <!-- 1. DOM 요소 태그 -->
+    <h2 id="app">{{ vueMessge }}</h2>
+
+    <!-- 스크립트 - VUE.JS :  Vue() 객체 인스턴스   -->
+    <script>
+
+        let app = new Vue({
+            el:'#app',
+            data:{
+                vueMessge:'프레임워크 Vue.js 웹앱 개발 메시지 보내기'
+            }
+        });
+
+    </script>
+
+
+</body>
+</html>

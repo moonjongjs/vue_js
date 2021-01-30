@@ -34,22 +34,46 @@
     </div>
 
     <script>
-        let a; //값이 계속 바뀔수 있는 변수 선언할 때 사용하는 키워드
         //const 한번 설정하면 변수의 값이 바뀌지 않는 변수 선언 키워드
+        let a=[]; //값이 계속 바뀔수 있는 변수 선언할 때 사용하는 키워드
+        let cnt=-1;
+        let setId=null;
+        let $txt='';
+        let h2txt = '';
 
         const webApp = new Vue({ //뷰의 인스턴스 생성된 객체
-            el:'#app', //엘리먼트(Element id ....)
+            el:'#app', //엘리먼트(Element  id ....)
             data:{ //기본 바인딩  모델 Model
                 txt:'기본/메시지/출력/내용입니다./^^',
-                
             },
             methods:{ //메서드 에서 함수 호출 사용
+                
                 eventFn: function(){
-                    a = this.txt.split('/'); //this 객체 자신을 지칭
-                    console.log( a );
-                    this.txt = a[4];
-
-                    console.log(' methods 단계 수정단계 완료');  
+                    that = this;
+                    cnt = -1;
+                    // a = document.querySelector('h2').innerHTML.split('/'); //this 객체 자신을 지칭
+                    a = that.txt.split('/'); //this 객체 자신을 지칭
+                    $txt='';
+                    that.txt ='';
+                    
+                    function timerFn(){
+                        
+                        cnt++;
+                        $txt = a[cnt];
+                        
+                        if( cnt>=4 ){
+                           clearInterval(setId);
+                        //    document.querySelector('h2').innerHTML += $txt;
+                           that.txt += $txt;
+                        }
+                        else{
+                        //    document.querySelector('h2').innerHTML += $txt + '/';
+                           that.txt += $txt + '/';
+                        }
+                      
+                    }
+                   setId =  setInterval(timerFn,500);
+                   console.log(`methods 단계 수정단계 완료  ${that}`);  
                 }
             }, 
             beforeCreate:function(){
@@ -57,6 +81,7 @@
                 //데이터 속성과 메서드 속성이 아직 인스턴스에 정의 되어 있지 않은 상태
                 //DOM(모든 엘리먼트 요소)에 접근이 안되는 형태
                 console.log('1-1단계 beforeCreate 단계');
+                that = this;
             },
             created:function(){
                 //2단계 beforeCreate 다음단계
@@ -64,31 +89,39 @@
                 //method 속성 사용
                 //컴포넌트 태플릿트 이전 상태 까지
                 //DOM(모든 엘리먼트 요소)에 접근이 안되는 형태
-                console.log('1-2 단계 Created 단계');
+                that = this;
+
+                console.log(`1-2 단계 Created 단계`);
+                console.log(`1-1단계  Create 단계 변수 설정 학인:  ${that}`);
+
             },
             beforeMount:function(){
                 //3단계 created 다음단계
                 //el:(엘리먼트) 에 마운트 하기 이전상태
                 //브라우저에 DOM요소를 렌더링해서 화면에 보여주는 전단계
-                console.log('2-1 단계 beforeMount 단계');
+                that = this;
+                console.log(`2-1 단계 beforeMount 단계 ${that}`);
             },
             mounted:function(){
                 //el:(엘리먼트) 에 마운트 상태
                 //브라우저에 DOM요소를 렌더링해서 화면에 보여주는 단계                
                 //컴포넌트 태플릿트 생성되고 마운트된 상태
                 //DOM(모든 엘리먼트 요소)에 접근이 가능한 형태
-                console.log('2-2 단계 mounted 단계');
+                that = this;                
+                console.log(`2-2 단계 mounted 단계 ${that}`);
             },
             beforeUpdate:function(){
                 //마운트 된 후 수정이전상태로
                 //감시자(관찰자) : watch 속성으로 감시하는 단계
-                console.log('3-1 단계 beforeUpdated 단계');
+                that = this; 
+                console.log(`3-1 단계 beforeUpdated 단계 ${that}`);
             },            
             updated:function(){
                 //수정상태가 완료된 형태
                 //혹시 새로운 내용이 추가되면 무한루프에 빠질수 있다
                 //그러니 beforeUpdated 사용하여 감시하고 수정상태를 한다.
-                console.log('3-2 단계 Updated 단계');
+                that = this; 
+                console.log(`3-2 단계 Updated 단계 ${that}`);
             },
             beforeDestroy:function(){//비포 디-스트로이
                 //파괴되기 직전단계
