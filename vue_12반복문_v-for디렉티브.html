@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="./js/vue/vue.js"></script>
+
+    <style>
+        * {margin:0;padding:0;vertical-align:middle;border:0;}
+        body{text-align:center;}
+        
+        ul,li {list-style-type:none;}
+        h1 {display:inline-block;text-align:center;font-size:30px;margin-top:100px;padding-bottom:7px;border-bottom:1px solid #ccc;}
+        #sungjuk {width:100%;font-size:15px;margin:0 auto;text-align:center;padding-top:100px;}
+            .table {display:inline-block;}
+                .row {border-bottom:1px solid #ccc;}
+                .row:first-child {border-top:1px solid #ccc;}
+                    .field {display:inline-block;width:100px;padding:15px 0;border-left:1px solid #ccc;}
+                    .field:last-child {border-right:1px solid #ccc;}
+    </style>
+
+
+</head>
+<body>
+    
+    <h1>v-for 디렉티브 반복문 성적처리</h1>
+
+    <div id="sungjuk">
+        <ul class="table">
+            <li class="row" v-for='key in student'> <!-- 객체를 행 반복 처리 -->
+                <ul class="record">
+                    <li class="field">{{key.번호}}</li>
+                    <li class="field">{{key.이름}}</li>
+                    <li class="field">{{key.HTMLCSS}}</li>
+                    <li class="field">{{key.SCRIPT}}</li>
+                    <li class="field">{{key.VUE}}</li>
+                    <li class="field">{{key.GITHUB}}</li>
+                    <li class="field">{{key.HTMLCSS+key.SCRIPT+key.GITHUB}}</li>
+                    <li class="field">{{(key.HTMLCSS+key.SCRIPT+key.GITHUB)/4}}</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+
+    <!-- 성적처리 뷰 -->
+    <script>
+
+        const objVue = new Vue({
+            el:'#sungjuk',
+            data:{
+
+                student: [
+                    {번호:1,이름:'문  종',HTMLCSS:100,SCRIPT:100,VUE:100,GITHUB:100},
+                    {번호:2,이름:'문선종',HTMLCSS:100,SCRIPT:100,VUE:100,GITHUB:100},
+                    {번호:3,이름:'김유신',HTMLCSS:99,SCRIPT:98,VUE:100,GITHUB:100},
+                    {번호:4,이름:'이순신',HTMLCSS:100,SCRIPT:100,VUE:100,GITHUB:100},
+                    {번호:5,이름:'강감찬',HTMLCSS:70,SCRIPT:80,VUE:100,GITHUB:100},
+                    {번호:6,이름:'유관순',HTMLCSS:78,SCRIPT:90,VUE:100,GITHUB:100},
+                    {번호:7,이름:'차분희',HTMLCSS:98,SCRIPT:100,VUE:100,GITHUB:100}
+                ]
+
+            }
+        });
+
+    </script>
+
+
+
+
+
+    
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="./js/vue/vue.js"></script>
+
+</head>
+<body>
+    
+    <h1>Vue.js  라이프 사이클</h1>
+
+    <!-- View -->
+    <div id="webApp">{{ txt }}</div>
+
+    <script>
+
+        var obj = new Vue({
+            el:'#webApp',
+            data:{
+                txt:'Vue.js  라이프 사이클 익히기와 이해하기',
+                txt1:'Vue.js  라이프 사이클 익히기와 이해하기',
+                txt2:'Vue.js  라이프 사이클 익히기와 이해하기'
+            },
+            beforeCreate: function(){
+                console.log('1 beforeCreate');
+            },
+            created: function(){ //생성
+                console.log('2 created');
+            },
+            beforeMount: function(){
+                console.log('3 beforeMount');
+            },
+            mounted: function(){ //화면에 부착 View
+                console.log('4 mounted');
+            },
+            beforeUpdate: function(){
+                console.log('5 beforeUpdate');
+            },
+            updated: function(){ //수정
+                console.log('6 updated');
+            },
+            beforeDestroy: function(){
+                console.log('7 beforeDestroy');
+            },
+            destroyed: function(){ //삭제(파괴)
+                console.log('8 destroyed');
+            }
+
+        });
+
+    </script>
+
+</body>
+</html>

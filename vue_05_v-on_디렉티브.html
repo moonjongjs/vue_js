@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="./js/vue/vue.js"></script>
+
+</head>
+<body>
+    
+    <h1>버튼 이벤트 여러개 등록하기</h1>
+
+    <!-- View 태그 요소  선택자 : 실해범위 객체 유효성 범위(Scope)  만들기 -->
+    <div id="webApp">
+        <h2>{{ txt1 }}</h2>
+        <h3>{{ txt2 }}</h3>
+        <h4>{{ txt3 }}</h4>
+        <!-- 버튼 이벤트 -->
+        <button v-on="{ click:event1Fn, mousedown:event2Fn, mouseup:event3Fn, mouseout:event4Fn,  mouseover:event5Fn  }">버튼 여러개 이벤트 등록</button>    
+    </div>
+
+    <!-- 모델 뷰 - el: data: -->
+    <script>
+        let cnt = 0;
+        var obj = new Vue({ //생성자
+            el:'#webApp',
+            data:{ //모델
+                txt1:'하나의 버튼 이벤트 등록1',
+                txt2:'하나의 버튼 이벤트 등록2',
+                txt3:'하나의 버튼 이벤트 등록3'
+            },
+            methods:{                
+                event1Fn: function(){
+                    console.log('버튼 clcik 이벤트!');
+                    this.txt1 += ' 첫번째 항목 추가 내용입니다.';
+                },
+                event2Fn: function(){
+                    console.log('버튼 mousedown 이벤트!');
+                    cnt++;
+                    this.txt2 = cnt; //카운트
+                },
+                event3Fn: function(){
+                    console.log('버튼 mouseup 이벤트!');
+                },
+                event4Fn: function(){
+                    console.log('버튼 mouseout 이벤트!');
+                },
+                event5Fn: function(){
+                    console.log('버튼 mouseover 이벤트!');
+                }
+            }
+        });
+
+    </script>
+
+
+</body>
+</html>

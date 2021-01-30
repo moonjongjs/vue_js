@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/lib/jquery-1.12.4.min.js"></script>
+    <script src="./js/vue/vue.js"></script>
+
+    <style>
+        body {
+            text-align:center;
+        }
+    </style>
+
+</head>
+<body>
+
+    <h1>v-on (디렉티브) 사용하기</h1>
+    <!-- 버튼 클릭해서 h2 요소안에 txt 변수에 메시지 출력하기 -->
+
+    <!-- View 보여주는 태그 요소 그리고 data 속성 값 함수 값 보여주는 장소 -->
+    <div id="app">
+        <h2>{{ txt }}</h2>
+        <!-- v-on : 명칭 디렉티브 라고 한다. -->
+        <!-- <button v-on:click='함수이름'>클릭! 하세요</button> -->
+        <button v-on:click='eventFn'>클릭! 하세요</button>
+        <!-- <button @on:click='eventFn'>클릭! 하세요</button> -->
+
+        <!-- 가상 태그 요소안에 실제 사용되는 DOM 태그요소를 넣어서 사용한다. -->
+        <!-- <babo-component></babo-component> --><!-- 컴포넌트 :  태플리트를 받아는 가상요소 -->
+        <!-- 탬플릿트를 화면에 부착하여 보여주는 형태를 마운트 -->
+
+    </div>
+
+    <script>
+        let a; //값이 계속 바뀔수 있는 변수 선언할 때 사용하는 키워드
+        //const 한번 설정하면 변수의 값이 바뀌지 않는 변수 선언 키워드
+
+        const webApp = new Vue({ //뷰의 인스턴스 생성된 객체
+            el:'#app', //엘리먼트(Element id ....)
+            data:{ //기본 바인딩  모델 Model
+                txt:'기본/메시지/출력/내용입니다./^^',
+                
+            },
+            methods:{ //메서드 에서 함수 호출 사용
+                eventFn: function(){
+                    a = this.txt.split('/'); //this 객체 자신을 지칭
+                    console.log( a );
+                    this.txt = a[4];
+
+                    console.log(' methods 단계 수정단계 완료');  
+                }
+            }, 
+            beforeCreate:function(){
+                //1단계 인스턴스가 생성되고 가장 처음으로 실행되는  라이프 사이크단계
+                //데이터 속성과 메서드 속성이 아직 인스턴스에 정의 되어 있지 않은 상태
+                //DOM(모든 엘리먼트 요소)에 접근이 안되는 형태
+                console.log('1-1단계 beforeCreate 단계');
+            },
+            created:function(){
+                //2단계 beforeCreate 다음단계
+                //data 속성 사용
+                //method 속성 사용
+                //컴포넌트 태플릿트 이전 상태 까지
+                //DOM(모든 엘리먼트 요소)에 접근이 안되는 형태
+                console.log('1-2 단계 Created 단계');
+            },
+            beforeMount:function(){
+                //3단계 created 다음단계
+                //el:(엘리먼트) 에 마운트 하기 이전상태
+                //브라우저에 DOM요소를 렌더링해서 화면에 보여주는 전단계
+                console.log('2-1 단계 beforeMount 단계');
+            },
+            mounted:function(){
+                //el:(엘리먼트) 에 마운트 상태
+                //브라우저에 DOM요소를 렌더링해서 화면에 보여주는 단계                
+                //컴포넌트 태플릿트 생성되고 마운트된 상태
+                //DOM(모든 엘리먼트 요소)에 접근이 가능한 형태
+                console.log('2-2 단계 mounted 단계');
+            },
+            beforeUpdate:function(){
+                //마운트 된 후 수정이전상태로
+                //감시자(관찰자) : watch 속성으로 감시하는 단계
+                console.log('3-1 단계 beforeUpdated 단계');
+            },            
+            updated:function(){
+                //수정상태가 완료된 형태
+                //혹시 새로운 내용이 추가되면 무한루프에 빠질수 있다
+                //그러니 beforeUpdated 사용하여 감시하고 수정상태를 한다.
+                console.log('3-2 단계 Updated 단계');
+            },
+            beforeDestroy:function(){//비포 디-스트로이
+                //파괴되기 직전단계
+                console.log('4-1 단계 beforeUpdated 단계');
+            },
+            destroyed:function(){//디-스트로이   :파괴(삭제)단계
+                //파괴되고 호출되는 단계
+                console.log('4-2 단계 beforeUpdated 단계');                
+
+            }   
+
+        });
+
+    </script>
+
+
+
+</body>
+</html>

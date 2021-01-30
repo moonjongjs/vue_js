@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="./js/vue/vue.js"></script>
+
+    <style>
+        * {margin:0;padding:0;vertical-align:middle;border:0;}
+        body{text-align:center;}
+        
+            h1 {color:#39b;font-size:40px;margin-top:50px;}    
+            h2 {color:#39b;font-size:20px;margin-top:20px;}    
+
+            #app {padding-top:50px;}
+            span {display: inline-block;margin:0 10px;}
+            span input[type='checkbox'] {width:15px;height:15px;border:1px solid #333;}
+
+    
+    </style>
+
+</head>
+<body>
+    
+    <h1>v-model 디렉티브 이벤트 체크박스</h1>
+    
+    <div id="app">
+
+        <div class="chk-wrap">  
+            <span>
+                <input v-model='chk1'  type="checkbox" name="chk1" id="chk1" value="영화">
+                <label for="chk1">영화</label>
+            </span>
+            <span>
+                <input v-model='chk2' type="checkbox" name="chk2" id="chk2" value="여행">
+                <label for="chk2">여행</label>
+            </span>
+        </div>
+
+        <h2>영화 : {{  chk1  }}</h2>
+        <h2>여행 : {{  chk2  }}</h2>
+
+    </div>
+    
+    <script>
+        const obj = new Vue({
+            el:'#app',
+            data:{
+                chk1:true,  //선택 참 true / 거짓 fasle
+                chk2:false
+            }
+        });
+    </script>
+
+
+
+
+</body>
+</html>

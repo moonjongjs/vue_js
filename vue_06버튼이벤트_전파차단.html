@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="./js/vue/vue.js"></script>
+
+    <style>
+
+        #app { width:100%; }
+        #app > div { background:#c99;width:500px;height:500px; margin:0 auto;}
+        #app > div > div { background:#99c;width:200px;height:200px; margin:0 auto; text-align:center; }
+        #app > div > div > button { background:#000;color:#fff;width:150px;height:50px; }
+
+    </style>
+
+
+</head>
+<body>
+    
+    <h1>버튼 이벤트 차단하기</h1>
+
+    <div id="app">
+
+        <!-- 
+        once 버튼 1번만 클릭 
+        prevent 자식에게 전파 차단
+        stop    부모에게 전파 차단 
+        event3($event) 매개변수 전달
+        -->
+
+        <!--
+             @  = v-on: //약식
+         -->
+
+        <div @click.once.prevent='event1'> <!-- preventDefault() -->
+            <div  @click.stop='event2'> <!-- stopPropagation() -->
+                <button  v-on:click='event3($event)'>버튼 클릭 이벤트 차단하기</button> <!-- stopPropagation() -->
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        var cnt = 0;
+
+        var obj = new Vue({
+            el:'#app',
+            methods:{
+
+                event1:function(){
+                    console.log('버튼1 이벤트 발생!');
+                    cnt++;
+                    console.log(cnt);
+                },
+                event2:function(){
+                    console.log('버튼2 이벤트 발생!');
+                },
+                event3:function(event){ //아규먼트 받기 네이티브 차단 방식
+                    if(event){
+                        /* event.preventDefault(); */ //자식에게 전달 차단
+                        event.stopPropagation(); //자식에게 전달 차단
+                        
+                    }
+                    console.log('버튼3 이벤트 발생!');
+                }
+
+            }
+        });
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="./js/vue/vue.js"></script>
+
+    <style>
+        * {margin:0;padding:0;vertical-align:middle;border:0;}
+        body{text-align:center;}
+        
+        h1 {color:#39b;font-size:40px;margin-top:50px;}    
+        h2 {color:#b38;font-size:20px;}    
+
+        #app {padding-top:50px;}
+
+        button {width:200px;height:50px;background:#000;color:#fff;margin-top:30px;font-size:20px;cursor:pointer;}
+        /* 요소의 속성(v-bind) 클래스 생성되면 변경 */
+        .image1 img { width:auto;height:400px; }
+        .image1.addClass1 img{ width:auto;height:800px;border:4px solid #000; }
+       
+        .image2 img {width:auto;height:400px;}
+        .image2.addClass2 img{ width:auto;height:800px;border:4px solid #000; }
+
+    </style>
+
+</head>
+<body>
+    
+    <h1>v-if 디렉티브 조건문 버튼 클릭 이벤트</h1>
+    
+    <div id="app">
+        <h2 v-if='img1' class="image1" v-bind:class="{ addClass1: x  }"><img src="./img/main1_1_24.jpg"></h2>
+        <h2 v-if='img2' class="image2" v-bind:class="{ addClass2: y  }"><img src="./img/main1_1_26.jpg"></h2>
+        <button @click='toggleFn'>토글버튼클릭</button>
+    </div>
+
+    <script>
+
+        var obj = new Vue({
+            el:'#app',
+            data:{
+                img1: true,  //객체 속성 img1 / true 속성 값
+                img2: false,
+                x : true,
+                y : true 
+            },
+            methods:{
+
+                toggleFn: function(){
+                    if( this.img1 === true ){
+                        this.img1 = false;
+                        this.img2 = true;
+                        this.x =  false;
+                        this.y =  false;
+                        
+                    }
+                    else  if( this.img1 === false ){
+                        this.img1 = true;
+                        this.img2 = false;
+                        this.x = true; 
+                        this.y = true; 
+                    }
+                }
+
+            }
+        });
+    </script>
+
+
+    
+
+
+
+
+</body>
+</html>

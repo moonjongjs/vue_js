@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="./js/vue/vue.js"></script>
+
+    <style>
+
+        #app { width:800px;line-height:170%;margin:0 auto;text-align:center;}
+    </style>
+
+
+</head>
+<body>
+    
+    <h1>지역 컴포넌트 등록 & 템플릿트 & 내용</h1>
+
+    <div id="app">
+        <comp1></comp1>
+        <comp2></comp2>
+        <comp3></comp3>
+        <comp4></comp4>
+        <comp5></comp5>
+    </div>
+
+
+    <script>
+
+        let cp1 = { //객체
+            template:`<h2><mark>지역컴포넌트의 템플릿 요소 내용!</mark></h2>`
+        }
+        let cp2 = { //객체
+            template:`<h1><mark>지역컴포넌트의 템플릿 요소 내용!</mark></h1>`
+        }
+        let cp3 = { //객체
+            template:`<h3><mark>지역컴포넌트의 템플릿 요소 내용!</mark></h3>`
+        }
+        let cp4 = { //객체
+            template:`<h2><mark>지역컴포넌트의 템플릿 요소 내용!</mark></h2>`
+        }
+        let cp5 = { //객체
+            template:`<h1><mark>지역컴포넌트의 템플릿 요소 내용!</mark></h1>`
+        }
+
+        const obj = new Vue({
+            el:'#app',
+            components:{ //내부 지역 컴포넌트
+                'comp1': cp1, /* 컴포넌트: 탬플릿트  */
+                'comp2': cp2,
+                'comp3': cp3,
+                'comp4': cp4,
+                'comp5': cp5
+            }
+        });
+
+    </script>
+
+
+
+
+</body>
+</html>

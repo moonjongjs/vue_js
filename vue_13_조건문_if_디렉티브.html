@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="./js/vue/vue.js"></script>
+
+    <style>
+        * {margin:0;padding:0;vertical-align:middle;border:0;}
+        body{text-align:center;}
+        
+        h1 {color:#39b;font-size:40px;}    
+        h2 {color:#b38;font-size:20px;}    
+
+    </style>
+
+</head>
+<body>
+    
+    <h1>v-if 디렉티브 조건문</h1>
+    
+    <div id="app">
+        <h2 v-if='t'> t토글변수가 참이면 타이틀은 조건이 참인 경우에만 보입니다. </h2>
+    </div>
+
+    <script>
+        var obj = new Vue({
+            el:'#app',
+            data:{
+                t: true  //토글변수(속성 Property 프로퍼티) t : 값(Value)이 false;
+            }
+        });
+    </script>
+
+
+    
+
+
+
+
+</body>
+</html>

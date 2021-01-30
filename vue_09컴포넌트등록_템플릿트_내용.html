@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="./js/vue/vue.js"></script>
+
+    <style>
+
+        h1 { text-align:center; }
+        h3 { background:#ddd;font-size:70px;color:#c00;text-align:center;}
+        #box { width:500px;line-height:170%;font-size:15px;margin:0 auto;}
+    </style>
+
+
+</head>
+<body>
+    
+    <h1>컴포넌트 등록 & 템플릿트 & 내용</h1>
+
+    <!-- html -->
+    <div id="app">
+        <comp v-bind:txtbind='txt'></comp>
+    </div>
+
+    <!-- script -->
+    <script>
+
+        //자식
+        // 컴포넌트
+        /* 여러줄 만들 때 사용 \ 역 슬래쉬 줄끝의 의미 */
+        Vue.component('comp',{
+            props:['txtbind'],  //Property 속성 등록  =  txtbind
+            template:`\  
+                    <div id='box'>\
+                        <ol>\
+                            <li>{{ txtbind }}</li>\
+                            <li>{{ txtbind }}</li>\
+                            <li>{{ txtbind }}</li>\
+                            <li>{{ txtbind }}</li>\
+                            <li>{{ txtbind }}</li>\
+                            <li>{{ txtbind }}</li>\
+                            <li>{{ txtbind }}</li>\
+                            <li>{{ txtbind }}</li>\
+                        </ol>\
+                    </div>\
+                    ` //빽틱
+        });
+
+        //부모
+        var obj = new Vue({
+            el:'#app',
+            data:{
+                txt:`컴포넌트 내용 !!!!! 메시지 ^^` 
+            }
+        });
+
+    </script>    
+
+</body>
+</html>

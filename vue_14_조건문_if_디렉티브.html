@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="./js/vue/vue.js"></script>
+
+    <style>
+        * {margin:0;padding:0;vertical-align:middle;border:0;}
+        body{text-align:center;}
+        
+        h1 {color:#39b;font-size:40px;}    
+        h2 {color:#b38;font-size:20px;}    
+
+            img {width:auto;height:400px;}
+
+    </style>
+
+</head>
+<body>
+    
+    <h1>v-if 디렉티브 조건문 버튼 클릭 이벤트</h1>
+    
+    <div id="app">
+        <h2 v-if='img1'> <img src="./img/main1_1_24.jpg"> </h2>
+        <h2 v-if='img2'> <img src="./img/main1_1_26.jpg"> </h2>
+        <button @click='toggleFn'>토글버튼클릭</button>
+    </div>
+
+    <script>
+                       //객체 내에서는 ;(Semi colone) 세미콜론 사용 하면 안됩니다.
+                       //객체 내에 함수와 그외 모든 스크립트에서는 사용가능
+        var obj = new Vue({
+            el:'#app',
+            data:{
+                img1: true,  //객체 속성 img1 / true 속성 값
+                img2: false 
+            },
+            methods:{
+
+                toggleFn: function(){
+                    if( this.img1 === true ){
+                        this.img1 = false;
+                        this.img2 = true;
+                    }
+                    else  if( this.img1 === false ){
+                        this.img1 = true;
+                        this.img2 = false;
+                    }
+                }
+
+            }
+        });
+    </script>
+
+
+    
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="./js/vue/vue.js"></script>
+
+    <style>
+        * {margin:0;padding:0;vertical-align:middle;border:0;}
+        body{text-align:center;}
+        
+        h1 {color:#39b;font-size:40px;margin-top:50px;}    
+        h2 {color:#b38;font-size:15px;width:500px;height:250px;margin:0 auto;overflow-y:scroll;border:1px solid #ccc;background:#f6f6f6;white-space:wrap;}
+
+        #app {padding-top:50px;}
+
+        textarea {width:800px;height:300px;border:1px solid #ccc;background:#f6f6f6;font-size:17px;}
+
+        
+    </style>
+
+</head>
+<body>
+    
+    <h1>v-model 디렉티브 이벤트 메모장</h1>
+    
+    <div id="app">
+        
+        <h2> 입력 메시지 내용은 : {{ msg }} </h2>
+
+        <textarea v-model='msg' name="memo" id="memo"></textarea>    
+
+    </div>
+
+    <script>
+        var obj = new Vue({
+            el:'#app',
+            data:{
+                msg : `메모장 입력 내용!!!`
+            }
+        });
+    </script>    
+
+
+
+</body>
+</html>
