@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>콤퍼넌트 등록</title>
+    <script src='./js/vue/vue.js'></script>
+    <style>
+        * {padding:0;margin:0;vertical-align:middle;}
+        ul,li{list-style:none;}
+        .container {width:100%;}
+        .container .view {width:100%;}
+        .container .view ul {width:100%;}
+        .container .view ul li {width:25%;float:left;height:220px;overflow:hidden;}
+        .container .view ul li div {margin:10px;}
+        .container .view ul li div img {width:100%;}
+    </style>
+</head>
+<body>
+    
+    <div id="app">
+        <h1>콤포넌트등록 {{msg}}</h1>
+        <comp1 v-bind:propety1='msg1'></comp1>
+        <comp2 v-bind:propety2='msg2'></comp2>
+    </div>
+
+    <script>
+        Vue.component('comp1', {
+            props:['propety1'],
+            template:`\
+                <div class='container'>\
+                    <div class='view'>\
+                        <ul>\
+                            <li>\
+                                <div class='wrap'>\
+                                    <img src='./img/main1_1_24.jpg' alt=''>\
+                                </div>\
+                            </li>\
+                            <li>\
+                                <div class='wrap'>\
+                                    <img src='./img/main1_1_26.jpg' alt=''>\
+                                </div>\
+                            </li>\
+                            <li>\
+                                <div class='wrap'>\
+                                    <img src='./img/main1_1_24.jpg' alt=''>\
+                                </div>\
+                            </li>\
+                            <li>\
+                                <div class='wrap'>\
+                                    <img src='./img/main1_1_26.jpg' alt=''>\
+                                </div>\
+                            </li>\
+                            <li>\
+                                <div class='wrap'>\
+                                    <img src='./img/main1_1_24.jpg' alt=''>\
+                                </div>\
+                            </li>\
+                            <li>\
+                                <div class='wrap'>\
+                                    <img src='./img/main1_1_26.jpg' alt=''>\
+                                </div>\
+                            </li>\
+                            <li>\
+                                <div class='wrap'>\
+                                    <img src='./img/main1_1_24.jpg' alt=''>\
+                                </div>\
+                            </li>\
+                            <li>\
+                                <div class='wrap'>\
+                                    <img src='./img/main1_1_24.jpg' alt=''>\
+                                </div>\
+                            </li>\
+                        </ul>\
+                    </div>\
+                </div>\
+            `
+        });
+        
+        Vue.component('comp2', {
+            props:['propety2'],
+            template:`\
+                <div class='container'>\
+                    <div class='view'>\
+                        <ul>\
+                            <li>\
+                                <div class='wrap'>\
+                                    <img src='./img/main1_1_24.jpg' alt=''>\
+                                </div>\
+                            </li>\
+                            <li>\
+                                <div class='wrap'>\
+                                    <img src='./img/main1_1_26.jpg' alt=''>\
+                                </div>\
+                            </li>\
+                            <li>\
+                                <div class='wrap'>\
+                                    <img src='./img/main1_1_24.jpg' alt=''>\
+                                </div>\
+                            </li>\
+                            <li>\
+                                <div class='wrap'>\
+                                    <img src='./img/main1_1_26.jpg' alt=''>\
+                                </div>\
+                            </li>\
+                            <li>\
+                                <div class='wrap'>\
+                                    <img src='./img/main1_1_24.jpg' alt=''>\
+                                </div>\
+                            </li>\
+                            <li>\
+                                <div class='wrap'>\
+                                    <img src='./img/main1_1_26.jpg' alt=''>\
+                                </div>\
+                            </li>\
+                            <li>\
+                                <div class='wrap'>\
+                                    <img src='./img/main1_1_24.jpg' alt=''>\
+                                </div>\
+                            </li>\
+                            <li>\
+                                <div class='wrap'>\
+                                    <img src='./img/main1_1_24.jpg' alt=''>\
+                                </div>\
+                            </li>\
+                        </ul>\
+                    </div>\
+                </div>\
+            `
+        });
+
+        const obj = new Vue({
+            el:'#app',
+            data:{
+                msg1:`콤포넌트1 등록 데이터!!!!`,
+                msg2:`콤포넌트2 등록 데이터!!!!`
+            }
+        });
+
+    </script>
+
+
+
+
+
+</body>
+</html>
