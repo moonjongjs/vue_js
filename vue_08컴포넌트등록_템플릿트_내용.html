@@ -22,8 +22,10 @@
 
     <!-- html -->
     <div id="app">
-        <comp1 v-bind:txtbind='txt1'></comp1>  
-        <comp2 v-bind:txtbind='txt2'></comp2>  
+        <button v-on:click='comFn1'>콤포넌트 클릭 호출1</button>
+        <button v-on:click='comFn2'>콤포넌트 클릭 호출2</button>
+        <comp1 v-bind:txtbind1='txt1'></comp1>  
+        <comp2 v-bind:txtbind2='txt2'></comp2>  
     </div>
 
 
@@ -34,20 +36,28 @@
         // 컴포넌트
         //상위에서 하위에게 전달하는 것을 props 
         Vue.component('comp1',{
-            props:['txtbind'],  //Property 속성 등록  =  txtbind
-            template:'<h1><mark>{{ txtbind }}<i>성공1</i></mark></h1>'
+            props:['txtbind1'],  //Property 속성 등록  =  txtbind
+            template:'<h1><mark>{{ txtbind1 }}<i>성공1</i></mark></h1>'
         });
         Vue.component('comp2',{
-            props:['txtbind'],  //Property 속성 등록  =  txtbind
-            template:'<h1><mark>{{ txtbind }}<i>성공2</i></mark></h1>'
+            props:['txtbind2'],  //Property 속성 등록  =  txtbind
+            template:'<h1><mark>{{ txtbind2 }}<i>성공2</i></mark></h1>'
         });
 
         //부모
         var obj = new Vue({
             el:'#app',
             data:{
-                txt1:'컴포넌트1 내용 !!!!! 메시지 ^^', 
-                txt2:'컴포넌트2 내용 !!!!! 메시지 ^^' 
+                txt1:'', 
+                txt2:'' 
+            },
+            methods:{
+                comFn1:function(){
+                    this.txt1='콤포넌트1 텍스트!!!';
+                },
+                comFn2:function(){
+                    this.txt2='콤포넌트2 텍스트!!!';
+                }
             }
         });
 
