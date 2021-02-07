@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="./vue/lib/vue.js"></script>
+
+</head>
+<body>
+    
+    <!-- //v-on 디렉티브를 사용하여 
+    //Vue 인스턴스에서 메소드를 호출하는 이벤트 리스너를 추가할 수 있다. -->
+
+    <div id="app">
+        <p>{{msg}}</p>
+        <button v-on:click="btnFn">메지지출력</button>
+    </div>
+
+    <script>
+        var txt = '';
+        let a = [];
+        let t = 0;
+        const app = new Vue({
+            el:'#app',
+            data:{
+                msg:'moonjong, Vue.js, React.js, Angula.js'
+            },
+            methods: {
+                btnFn:function(){
+                    if(t==0){
+                        t=1;
+                        a = this.msg.split(',');
+                        txt='';
+                        for(i in a){
+                            txt += `[ ${a[i]} ]  `;
+                        }
+                        this.msg = txt;
+                    }                    
+                }
+            }
+        })
+
+    </script>
+
+
+</body>
+</html>

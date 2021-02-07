@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="./vue/lib/vue.js"></script>
+
+</head>
+<body>
+    
+    <div id="app">
+        <Ul>
+            <li v-for='i in student'>                
+                {{  
+                    `
+                    ${i.번호},
+                    ${i.이름},
+                    ${i.HTML},
+                    ${i.CSS},
+                    ${i.SCRIPT}, 
+                    ${i.VUE},
+                    총점: ${i.HTML+i.CSS+i.SCRIPT+i.VUE}, 
+                    평균 : ${(i.HTML+i.CSS+i.SCRIPT+i.VUE)/4}
+                    `  
+                }}
+            </li>
+        </Ul>
+    </div>
+
+    <script>
+        const vueApp = {
+            init: function(){
+
+                var app = new Vue({
+                    el: '#app',
+                    data: {
+                        student:[
+                            {번호:1,이름:'문선종',HTML:100,CSS:100,SCRIPT:100,VUE:100},
+                            {번호:2,이름:'이순신',HTML:90,CSS:100,SCRIPT:100,VUE:100},
+                            {번호:3,이름:'홍길동',HTML:98,CSS:100,SCRIPT:100,VUE:100},
+                            {번호:4,이름:'김유신',HTML:89,CSS:100,SCRIPT:100,VUE:100},
+                            {번호:5,이름:'김좌진',HTML:79,CSS:100,SCRIPT:100,VUE:100},
+                            {번호:6,이름:'김선호',HTML:100,CSS:100,SCRIPT:100,VUE:100},
+                            {번호:7,이름:'이혁재',HTML:91,CSS:100,SCRIPT:100,VUE:100}
+                        ]
+
+                    }
+                });
+
+            }
+        };
+        
+        vueApp.init();
+           
+    </script>
+
+</body>
+</html>

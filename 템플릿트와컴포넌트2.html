@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>템플릿트와 컴포넌트</title>
+    <script src="./vue/lib/vue.js"></script>
+
+
+</head>
+
+<template id='listTemplate'>
+    <li>{{ message }}</li>
+</template>
+<script>
+     Vue.component('list-component',{
+            template:'#listTemplate',
+            props:{
+                message:{type:String, default:'안녕하세요'},
+                cnt:{type:Number, required:false},
+                arr:{
+                    type:Array,
+                    default: function(){
+                        return ['대한민국'];
+                    }
+                }
+            }
+           
+        });
+        
+</script>
+
+<body>
+
+    <div id="app">
+        <ul>
+            <list-component  message='Vuejs' v-bind:cnt='100' v-bind:arr="['미국', '영국','호주']"></list-component>
+            <list-component  message='Reactjs' :cnt='21' :arr="['베트남']"></list-component>
+            <list-component  message='WepApp' :cnt='70' :arr="['중국', '타이완']"></list-component>
+            <list-component  :cnt='1000' :arr="['대한민국','홍콩']"></list-component>
+        </ul>
+    </div>
+
+    <script>
+
+       // Vue.config.devtools = true;
+        var vm = new Vue({
+            el:'#app',
+        });
+
+    </script>
+
+
+
+</body>
+</html>

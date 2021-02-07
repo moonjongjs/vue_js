@@ -1,0 +1,45 @@
+<html>
+  <head>
+    <title>Vue Sample</title>
+   <script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js"></script>	
+  </head>
+  <body>
+    <div id="app">
+      {{ message }}
+    </div>
+	
+	<div id="app1">
+      {{ msg }}
+    </div>
+	
+	<div class='mjApp'>
+		{{ output }}
+	</div>
+
+ 
+    <script>
+	new Vue({
+		el: '#app',
+		data:{
+		  message: 'Hello Vue.js!'
+		}
+	});
+
+	new Vue({
+		el:'#app1',
+		data:{
+			msg:'Moonjong Hello Vue.js'
+		}
+	});
+
+	new Vue({
+		el:'.mjApp',
+		data:{output:'문선종 뷰 기초 출력내용!!!'}
+	});
+	</script>
+	
+
+	
+	
+  </body>
+</html>

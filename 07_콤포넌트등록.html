@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="./vue/lib/vue.js"></script>
+    <style>
+        #app2 {color:#c00;}
+    </style>
+</head>
+<body>
+    
+    <div id="app">
+        <h1>컴포넌트1 등록</h1>
+        <comp></comp>
+    </div>
+
+    <div id="app2">
+        <h1 v-on:click='eventFn'>컴포넌트2 등록</h1>
+        <comp-el></comp-el>
+    </div>
+
+    <script>
+        var z = true;
+
+
+
+       const  vue = {
+            init: function(){
+                
+               this.component1Fn();
+               
+            },
+            component1Fn:function(){
+
+                Vue.component('comp',{
+                    template:`<h1 style="color:#c00c'"><i>전역 컴포넌트1이 등록되었습니다.</i></h1>`
+                });
+
+                new Vue({
+                    el: '#app',
+                    data:{
+                        x : true
+                    }
+                });
+
+
+                Vue.component('comp-el',{
+                    template:`<h1><i>전역 컴포넌트2이 등록되었습니다.</i></h1>`
+                });
+
+                new Vue({
+                    el: '#app2',
+                    data:{
+                       
+                       
+                    },
+                    methods:{
+                        eventFn : function(){
+                             z:true;   
+                        }
+                    }
+                });
+
+
+
+            }
+            
+        };
+        vue.init();
+
+
+    </script>
+
+
+</body>
+</html>

@@ -15,37 +15,58 @@
     <!-- View -->
     <div id="webApp">{{ txt }}</div>
 
+
     <script>
+        var x='';
 
         var obj = new Vue({
             el:'#webApp',
             data:{
-                txt:'Vue.js  라이프 사이클 익히기와 이해하기',
-                txt1:'Vue.js  라이프 사이클 익히기와 이해하기',
-                txt2:'Vue.js  라이프 사이클 익히기와 이해하기'
+                txt:'data값'
+            },
+            methods:{                
+                txt1 : function(z){
+                    this.x += `,  ${z}`;
+                    
+                    // this.txt=`data 속성 메서드 출력 Vue.js  라이프 사이클 익히기와 이해하기 ${msg}`;
+                    this.txt=`data 속성 메서드 출력 Vue.js ${this.x} |`;
+                    
+                }               
             },
             beforeCreate: function(){
                 console.log('1 beforeCreate');
+
             },
             created: function(){ //생성
                 console.log('2 created');
+                this.txt += '템플릿 생성하고 내용 출력!!! Created';
+                this.txt1(this.txt);
             },
             beforeMount: function(){
                 console.log('3 beforeMount');
+                
+
             },
             mounted: function(){ //화면에 부착 View
                 console.log('4 mounted');
+                this.txt += '템플릿 화면에 부착 View 내용 출력!!! Mounted';
+                this.txt1(this.txt);
             },
             beforeUpdate: function(){
                 console.log('5 beforeUpdate');
+                this.txt1('BeforeUpdate'); 
+               
             },
             updated: function(){ //수정
                 console.log('6 updated');
+                //this.txt1('Updated'); //무한루프 
             },
             beforeDestroy: function(){
+
                 console.log('7 beforeDestroy');
             },
             destroyed: function(){ //삭제(파괴)
+
                 console.log('8 destroyed');
             }
 

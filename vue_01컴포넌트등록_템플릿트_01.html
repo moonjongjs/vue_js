@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>전역컴포넌트 등록</title>
+
+
+
+</head>
+<body>
+
+    <div id="app">
+        <h1>전역 컴포넌트 등록</h1>
+        <comp></comp>
+    </div>
+
+    <script>
+
+        Vue.component('comp',{
+            template:'<h1>전역 컴포넌트 등록 ㅣ</h1>'
+        });
+
+
+        const obj = new Vue({
+            el:'#app'
+        });
+
+
+
+
+    </script>
+    
+</body>
+</html>

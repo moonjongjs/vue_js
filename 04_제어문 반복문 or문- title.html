@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="./vue/lib/vue.js"></script>
+
+</head>
+<body>
+    
+    <div id="app">
+        <ol>
+            <li v-for='i in txtList'>
+                <!-- {{ i.id + '   ' + i.item }} -->
+                {{ `${i.id} &nbsp; ${i.item}` }}
+            </li>
+        </ol>
+    </div>
+
+    <script>
+        const vueApp = {
+            init: function(){
+
+                var app = new Vue({
+                    el: '#app',
+                    data: {
+                        txtList:[
+                            {id:10,item:'Vue.js 강의 준비'},
+                            {id:20,item:'Vue.js 교재 만들기'},
+                            {id:30,item:'React 강의 준비하기1'},
+                            {id:40,item:'React 강의 준비하기2'},
+                            {id:50,item:'React 강의 준비하기3'},
+                            {id:60,item:'React 강의 준비하기4'}
+                        ]
+                    }
+                });
+
+            }
+        };
+        
+        vueApp.init();
+           
+    </script>
+
+</body>
+</html>

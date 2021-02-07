@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>템플릿트와 컴포넌트</title>
+    <script src="./vue/lib/vue.js"></script>
+    <style>
+        table {border-collapse: collapse;}
+        th,td {border:1px solid #ccc;height:45px;padding:0 20px;}
+    </style>
+
+</head>
+
+<template id='listTemplate'>
+    <div>
+        <table id='list'>
+            <tead>
+                <th>번호</th><th>이름</th><th>전화번호</th><th>주소</th>
+            </tead>
+            <tbody id="contacts">
+                <tr v-for="contact in contacts" v-if=''>
+                    <td>{{contact.no}}</td>
+                    <td>{{contact.name}}</td>
+                    <td>{{contact.tel}}</td>
+                    <td>{{contact.address}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</template>
+<script>
+     Vue.component('contactlist-component',{
+        template:'#listTemplate',
+        props:['contacts']
+    });
+    
+</script>
+
+<body>
+
+    <div id="app">
+        <h1>예방접종</h1>
+        <br>
+        <h3>1차대상자 3~5일까지</h3>
+        <contactlist-component :contacts='list1'></contactlist-component>
+
+        <h3>2차대상자 13~15일까지</h3>
+        <contactlist-component :contacts='list2'></contactlist-component>
+    </div>
+
+    <script>
+
+       Vue.config.devtools = true;
+        var vm = new Vue({
+            el:'#app',
+            data:{
+                list1:[
+                    {no:'01',name:'이순신',tel:'010-7942-5305',address:'경기도 고양시 일산서구 주엽동 강선마을 두산아파트 1408동 205호'},
+                    {no:'02',name:'김유신',tel:'010-6777-5305',address:'서울 고양시 일산서구 주엽동 강선마을 두산아파트 1408동 205호'},
+                    {no:'03',name:'김좌진',tel:'010-7999-8305',address:'인천광역시 고양시 일산서구 주엽동 강선마을 두산아파트 1408동 205호'},
+                    {no:'04',name:'류관순',tel:'010-7942-5307',address:'부산광역시 고양시 일산서구 주엽동 강선마을 두산아파트 1408동 205호'},
+                    {no:'05',name:'홍범도',tel:'010-7042-4505',address:'경기도 고양시 일산서구 주엽동 강선마을 두산아파트 1408동 205호'},
+                ],
+                list2:[
+                    {no:'06',name:'이효리',tel:'010-3987-8764',address:'서울 고양시 일산서구 주엽동 강선마을 두산아파트 1408동 205호'},
+                    {no:'07',name:'이송효',tel:'010-9942-3459',address:'광주 고양시 일산서구 주엽동 강선마을 두산아파트 1408동 205호'},
+                    {no:'08',name:'김씨',tel:'010-7042-0305',address:'부산 고양시 일산서구 주엽동 강선마을 두산아파트 1408동 205호'},
+                    {no:'09',name:'이혁재',tel:'010-7772-4532',address:'대전 고양시 일산서구 주엽동 강선마을 두산아파트 1408동 205호'},
+                    {no:'10',name:'문선종',tel:'010-0942-5305',address:'경기도 고양시 일산서구 주엽동 강선마을 두산아파트 1408동 205호'},
+                ]
+
+            }
+        });
+
+    </script>
+
+
+
+</body>
+</html>

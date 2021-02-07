@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="./js/vue/vue.js"></script>
+
+</head>
+<body>
+    
+    <h1>Vue.js  라이프 사이클</h1>
+
+    <!-- View -->
+    <div id="webApp">
+        <h3>{{ txt }}</h3>
+        <comp2 v-bind:lifeCycle='txt'></comp2>
+    </div>
+
+
+    <script>
+        var x='';
+
+        Vue.component('comp2',{
+            props:['lifeCycle'],
+            template:`\  
+                    <div id='box'>\
+                        <ol>\
+                            <li>{{ lifeCycle }}</li>\
+                        </ol>\
+                    </div>\
+                    `
+        });
+
+
+        var obj = new Vue({
+            el:'#webApp',
+            data:{
+                txt:'data값'
+            },
+            methods:{                
+                txt1 : function(z){
+                    x += `,  ${z}`;
+                    
+                    // this.txt=`data 속성 메서드 출력 Vue.js  라이프 사이클 익히기와 이해하기 ${msg}`;
+                    this.txt =`템플릿 생성하고 ${x}`;
+                    
+                }               
+            },
+            beforeCreate: function(){
+                console.log('1 beforeCreate',this.txt);
+
+            },
+            created: function(){ //생성
+                console.log('2 created',this.txt);
+                this.txt += '템플릿 생성하고 내용 출력!!! Created 반복문처리';
+                
+ 
+            },
+            beforeMount: function(){
+                console.log('3 beforeMount',this.txt);
+                this.txt += '템플릿 화면에 부착 View 내용 출력!!! beforeMount 반복문처리';
+                for(i=0;i<10;i++){
+                    this.txt += i;
+                }
+                this.txt1(this.txt);
+
+            },
+            mounted: function(){ //화면에 부착 View
+                console.log('4 mounted',this.txt);
+                this.txt += '템플릿 화면에 부착 View 내용 출력!!! Mounted 반복문처리';
+                for(i=0;i<10;i++){
+                    this.txt += i;
+                }
+                this.txt1(this.txt);                
+            
+            },
+            beforeUpdate: function(){
+                console.log('5 beforeUpdate',this.txt);
+                for(i=0;i<10;i++){
+                    this.txt += i;
+                }
+                this.txt1(this.txt);                 
+                this.txt1('BeforeUpdate'); 
+               
+            },
+            updated: function(){ //수정
+                console.log('6 updated',this.txt);
+                //this.txt1('Updated'); //무한루프 
+            },
+            beforeDestroy: function(){
+
+                console.log('7 beforeDestroy');
+            },
+            destroyed: function(){ //삭제(파괴)
+
+                console.log('8 destroyed');
+            }
+
+        });
+
+    </script>
+
+</body>
+</html>
