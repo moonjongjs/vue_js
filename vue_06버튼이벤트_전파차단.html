@@ -15,12 +15,49 @@
         #app > div > div > button { background:#000;color:#fff;width:150px;height:50px; }
 
     </style>
+    <script>
+        window.onload = function(){
+            // var appBtn = document.querySelector('.app-btn');
+            var appBtn = document.getElementById('appBtn');
+            // var h1Btn = document.getElementsByTagName('h1')[0];
+            // var appBtn = document.getElementsByClassName('app-btn')[0];
+            var agent = navigator.userAgent.toLowerCase();
 
+                console.log(agent);
+                if ( (navigator.appName == 'Netscape' && navigator.userAgent.search('Trident') != -1) || (agent.indexOf("msie 8") != -1) ) {
+                    appBtn.attachEvent('onclick', function() {
+                        console.log('click이벤트');
+                    },true);
+
+                    appBtn.attachEvent('onmouseover', function(){
+                        console.log('mouseover 이벤트');
+                    },true);
+                }
+                else{
+                    appBtn.addEventListener('click', function() {
+                    // appBtn.addEventListener('click', () => {
+                        console.log('click이벤트');
+                    },true);
+
+                    appBtn.addEventListener('mouseover', function(){
+                    // appBtn.addEventListener('mouseover', () => {
+                        console.log('mouseover 이벤트');
+                    },true);
+                }
+
+               
+
+
+
+              
+
+        }
+    </script>
 
 </head>
 <body>
     
-    <h1>버튼 이벤트 차단하기</h1>
+    <h1 id='appBtn' class="app-btn">버튼 이벤트 차단하기</h1>
 
     <div id="app">
 

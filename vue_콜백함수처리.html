@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>콜백함수</title>
+</head>
+<body>
+
+    <button>콜백함수 실행</button>
+
+
+    <script>
+        
+
+        $btn = document.querySelector('button');
+        $btn.onclick = () => {
+            fnProductReady(1, 2000, (pRet) => {
+                console.log(pRet);
+                fnProductReady(2, 1000, (pRet) => {
+                    console.log(pRet);
+                    fnProductReady(3, 500, (pdRet) => {
+                        console.log(pRet);
+                    });
+                });
+            });
+        }
+
+        function fnProductReady(pNum, pTime, fnCallBack){
+            setTimeout(()=>{
+                console.log(pNum);
+                fnCallBack('상품이 성공적으로 배송되었습니다.');
+            },pTime);
+        }
+
+
+
+
+    </script>
+
+
+</body>
+</html>

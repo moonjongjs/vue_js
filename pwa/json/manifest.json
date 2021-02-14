@@ -1,0 +1,17 @@
+{
+    "name":"안녕하ㅅ세요! PWA by JS",
+    "short_name":"PWA by JS",
+    "description":"PWA start program",
+    "scope":".",
+    "start_url":"./",
+    "display":"fullscreen",
+    "orientation:":"portrait",
+    "theme_color":"#ffffff",
+    "icons":[
+        {
+            "src":"./images/icons/",
+            "size":"512*612"
+        }
+    ]
+}
+

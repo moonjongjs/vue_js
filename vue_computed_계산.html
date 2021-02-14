@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>computed 계산 1 ~ 입력값까지 합</title>
+    <script src="./js/vue//vue.js"></script>
+</head>
+<body>
+
+    <div id='app'>
+        <input type="text" v-model='num'>
+        <h2>{{sum}}</h2>
+    </div>
+    
+    <script>
+        var obj = new Vue({
+            el:'#app',
+            data:{
+                num:0
+            },
+            computed:{
+                sum: function(){
+                    var n = Number(this.num);
+                    var regExp = /\D/g;
+                        if(regExp.test(n.toString())) return 0;
+                        // if(n<0 || Number.isNaN(n)) return 0;
+                            return ((1+n)*n)/2;
+                        
+                }
+            }
+
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue와 jQuery 사용 단계 </title>
+
+    <script src="./js/lib/jquery-1.12.4.min.js"></script>
+    <script src="./vue/lib/vue.js"></script>
+    <script src="./vue/lib/axios.min.js"></script>    
+    <!-- <script src="./js/main.js"></script>     -->
+</head>
+<body>
+    
+
+    <div id="app">
+        <button id="btn">click me</button>
+        <p>{{ msg }}</p>
+    </div>
+
+      
+      <script>
+
+          const obj = new Vue({
+                el:'#app',
+                data:{
+                    msg:'자바스크립트 & 제이쿼리'
+                },
+                methods:{
+                    msgFn:function(){
+                        alert('크릭함수 호출');
+                        this.msg='제이쿼리에서 함수 호출하여 methods msgFn()에서 수정!!!!!!'
+                    }
+                },
+                computed:{
+                   
+                },
+                created:()=>{
+
+                },
+                beforeMounte(){
+
+                },
+                mounted(){
+                  
+
+                    const  $obj = {
+                            init(){
+                                this.section1();
+                            },
+                            section1() {
+                                $('#btn').click(function() {
+                                    // vue data msg 프로퍼티 수정
+                                    obj.msg='제이쿼리에서 데이터 수정 !!!';
+                                    // vue data msg 프로퍼티 호출
+                                    console.log(obj.msg);
+                                    // vue 메서드 함수 호출
+                                    obj.msgFn();
+
+
+
+
+                                    // bind 사용하기
+                                    let cat = {
+                                        sound: "meow",
+                                        soundPlay: function () {
+                                            setTimeout(function () {
+                                                console.log('bind 사용하기 :',this.sound);
+                                            }.bind(this), 1000); // bind 사용
+                                        }
+                                    }
+
+                                    cat.soundPlay();
+                                    // 1초 후에 ... "meow"
+
+                                    //화살표함수 사용 출력
+                                    let cat2 = {
+                                        sound: "meow",
+                                        soundPlay: function () {
+                                            setTimeout(() => {
+                                                console.log('화살표함수 ',this.sound);
+                                            }, 1000);
+                                        }
+                                    }
+                                    cat2.soundPlay();
+
+                                    
+
+                                    //화살표함수 사용 출력
+                                    let cat3 = {
+                                        sound: "meow",
+                                        soundPlay() { //메서드 간략함수
+                                         let that = this;
+                                            setTimeout(() => {
+                                                console.log(' soundPlay() { //메서드 간략함수 화살표함수 ',that.sound);
+                                                obj.msg ='제이쿼리 cat3 객체에서 soundPlay() { //메서드 간략함수 화살표함수 수정';
+                                            }, 1000);
+                                        }
+                                    }
+                                    cat3.soundPlay();
+
+
+
+                                    //for in
+                                    //for of
+                                    let iterable = [3, 5, 7];
+                                        iterable.foo = "hello";
+
+                                    for (let i in iterable) {
+                                        console.log('i in iterable',i); // logs 0, 1, 2, "foo", "arrCustom", "objCustom"
+                                    }
+
+                                    for (let i of iterable) {
+                                        console.log('i of iterable',i); // logs 3, 5, 7
+                                        
+                                    }
+                                    
+                                    let waiting1 = ['wait', 'wait', 'umm.. stop!', 'wait', 'wait'];
+                                    let waiting2 = ['wait', 'wait', 'umm.. next!', 'wait', 'wait'];
+                                    let passed1 = [];
+                                    let passed2 = [];
+
+                                    for (let i in waiting1) {
+                                        if (i.includes('stop!')) {
+                                            break;
+                                        }
+                                        passed1.push(`pass`);
+                                        console.log('fot in',i);
+                                    }
+                                    console.log(passed1); // ['pass', 'pass'];
+                                    
+                                        waiting1 = ['wait', 'wait', 'umm.. stop!', 'wait', 'wait'];
+                                        waiting2 = ['wait', 'wait', 'umm.. next!', 'wait', 'wait'];
+                                        passed1 = [];
+                                        passed2 = [];
+
+                                    for (let curr of waiting1) {
+                                        if (curr.includes('stop!')) {
+                                            break;
+                                        }
+                                        passed1.push(`pass ${curr}`);
+                                        console.log(curr);
+                                    }
+                                    console.log(passed1); // ['pass', 'pass'];
+
+                                        waiting1 = ['wait', 'wait', 'umm.. stop!', 'wait', 'wait'];
+                                        waiting2 = ['wait', 'wait', 'umm.. next!', 'wait', 'wait'];
+                                        passed1 = [];
+                                        passed2 = [];
+                                    var cnt=-1;
+                                    for (let curr of waiting2) {
+                                        if (curr.includes('next!')) {
+                                            continue;
+                                        }
+                                        cnt++;
+                                        passed2.push(`${cnt} pass`);
+                                        console.log(cnt);
+                                    }
+                                    console.log(passed2); // ['pass', 'pass', 'pass', 'pass'];
+
+
+                                });
+                            }
+                    }
+
+                    $obj.init();
+
+                },
+                beforeUpdate(){
+                   
+                },
+                updated(){
+                //    this.msg='제이쿼리에서 데이터 수정 다음 updated 에서 수정 !!!';
+                }
+                
+          });
+        
+        </script>
+
+</body>
+</html>

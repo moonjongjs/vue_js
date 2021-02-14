@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>axios (AJAX)</title>
+
+
+</head>
+<body>
+    
+    <div id="app">
+        <button v-on:click="fetchData">get data</button>
+
+        <div v-for='item in arr'>
+            <h3>{{ item.userId }}</h3>
+            <p>{{ item.title }}</p>
+            <p>{{ item.body }}</p>
+        </div>
+
+    </div>
+    <script src="./vue/lib/vue.js"></script>
+    <script src="./vue/lib/axios.min.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data:{
+                arr:[]
+            },
+            methods: {
+                fetchData: function() {
+                    axios.get('./data/mem.json')
+                    // axios.post('./data/mem.json')
+                    .then((obj) => {
+                        console.log(obj.data.member[0].userId);
+                        console.log(obj.data.member[0].title);
+                        console.log(obj.data.member[0].body);
+                        console.log(obj.data.member[1].userId);
+                        console.log(obj.data.member[2].userId);
+                        this.arr = obj.data.member;
+                        
+                        this.arr.forEach(function(row,idx){
+                            console.log(idx,row.userId,row.title,row.body);
+                        }); 
+                    })
+                    .catch(function(error) {
+                        console.log(error);
+                    });
+                }
+
+                
+            }
+        })
+    </script>
+
+</body>
+</html>

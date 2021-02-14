@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promise 프로미스</title>
+    <script src="./vue/lib/vue.js"></script>
+</head>
+<body>
+    
+    <div id="app">
+        <button>Promise 상품 배송 시작</button>
+    </div>
+
+    <script>
+
+                let $btn = document.querySelector('button');
+                $btn.onclick = () => {
+                    fnProductReady_();
+                }
+                function fnProductReady_() {
+                    fnProductReady(1,2000)
+                        .then((pResult1) => {
+                            console.log(pResult1);
+                            return fnProductReady(2,1000);
+                        })
+                        .then((pResult2) => {
+                            console.log(pResult2);
+                            return fnProductReady(3,1000);
+                        })
+                        .then((pResult3) => console.log(pResult3))
+                    
+
+                    function fnProductReady(pNum,pTime) {
+                        return new Promise((result) => {
+                            setTimeout(() => {
+                                console.log(pNum);
+                                result('상품이 성공적으로 배송되었습니다.');
+                            },pTime);
+                        });
+                    }
+                }
+
+    </script>
+
+</body>
+</html>
