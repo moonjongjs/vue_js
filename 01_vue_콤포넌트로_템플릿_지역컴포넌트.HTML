@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue_콤포넌트로_엘리먼트 만들기</title>
+    <script src="./vue/lib/vue.js"></script>
+
+</head>
+<body>
+    
+    <div id="app">
+        <!-- <app-header v-bind:프롭스속성이름(프로퍼티)='상위콤포넌트 데이터 속성(프로퍼티)이름'></app-header> -->
+        <app-header :propsBind='message'></app-header>
+    </div>
+
+    <script>
+
+        var appHeader = {
+            template:`<h1> HEADER </h1>`,
+            props:'propsBind'
+        }
+
+        new Vue({
+            el:'#app',
+            components:{
+                'app-header':appHeader
+            },
+            data:{
+                message:'HI MOONJONG'
+            }
+        });
+
+    </script>
+
+
+</body>
+</html>
