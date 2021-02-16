@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue_콤포넌트로_엘리먼트 만들기</title>
+    <script src="./vue/lib/vue.js"></script>
+    <style>
+        *{margin:0;padding:0;}
+        h1{text-align:center;margin:50px 0;}
+        #main {
+            width:500px;
+            margin:0 auto;
+            
+            
+        }
+        .fruit_style {
+            list-style:none;
+        }
+        .fruit_style li {
+            border-bottom:1px solid #ddd;
+            
+        }
+        .fruit_style li a {
+            display:block;
+            padding:10px 0 10px 20px;
+            background:#f9f9f9;     
+            color:#000;
+            text-decoration:none;       
+        }
+        .fruit_style li a:hover {
+            background:#000;
+            color:#fff;
+        }
+    </style>
+</head>
+<script>
+
+    //Vue 콤포너트 정의
+    Vue.component('favorite-fruits',{
+        props:['fruit', 'count'],            
+        //Vue 콤포넌트 탬플릿 앨리먼트 구조 정의   
+        template:`
+            <li><a href='#'>{{ count+1 }} : {{fruit.sFruit_name }} </a></li>
+        `
+    });
+
+</script>        
+<body>
+    
+    <div id="main">
+        <h1>{{ sTitle }}</h1>
+        <div>
+            <ol  class='fruit_style'>
+                <favorite-fruits 
+                    v-for='(item, index) in aFruits' 
+                    v-bind:fruit='item' 
+                    v-bind:count='index' 
+                    v-bind:key='item.id'
+                ></favorite-fruits>
+            </ol>
+        </div>
+    </div>
+
+    <script>
+
+        //Vue 생성
+        const obj = new Vue({
+            el:'#main',
+            data:{
+                sTitle:'좋아하는 과일',
+                aFruits:[
+                    {id:0,sFruit_name:'사과'},
+                    {id:1,sFruit_name:'바나나'},
+                    {id:2,sFruit_name:'오렌지'},
+                    {id:3,sFruit_name:'귤'},
+                    {id:4,sFruit_name:'자몽'},
+                    {id:5,sFruit_name:'파인애플'},
+                    {id:6,sFruit_name:'딸기'}
+                ]               
+            }
+        });
+
+    </script>
+
+</body>
+</html>

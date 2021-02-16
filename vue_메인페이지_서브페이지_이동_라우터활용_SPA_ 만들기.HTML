@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>메인페이지 서브페이지 라우터 활용 SPA 페이지 이동 만들기</title>
+    <script src="./vue/lib/vue.js"></script>
+    <!-- <script src="./vue/lib/vue-router.js"></script> -->
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+    <style>
+        *{margin:0;padding:0;}
+       
+    </style>
+</head>
+<body>
+
+<div id="app">
+    <h1>안녕하세요!</h1>
+        <router-view></router-view>
+        <hr>
+    <div>라우터사용
+        <router-link to="/main">메인 페이지 이동</router-link>
+        <router-link to="/sub">서브 페이지 이동</router-link>
+    </div>
+</div>
+
+<script>
+
+    //라우터에 등록할 컴포넌트 정의
+    const tmMain = {
+        template:`<h2>메인페이지입니다.</h2>`
+    }
+    const tmSub = {
+        template:'<h1>서브페이지입니다.</h1>'
+    }
+
+    const rtRoutes = [
+        {
+            path:'/main',
+            component:tmMain
+        },
+        {
+            path:'/sub',
+            component:tmSub
+        }
+    ]
+
+    const router = new VueRouter({
+        routes:rtRoutes
+    });
+
+    const gApp = new Vue({
+        el:'#app',
+        router
+    });
+
+
+</script>
+
+</body>
+</html>
