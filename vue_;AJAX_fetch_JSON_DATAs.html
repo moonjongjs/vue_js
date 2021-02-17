@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX fetch</title>
+    <script src="./vue/lib/vue.js"></script>
+    
+</head>
+<body>
+
+    <div id="app">
+       <div v-for='post in posts'>
+           <h3>{{ post.name }}</h3>
+           <p>{{ post.age }}</p>
+           <p>{{ post.email }}</p>
+       </div>
+    </div>
+
+
+    <script>
+        const obj = new Vue({
+                    el:'#app',
+                    data:{
+                        posts:[]
+                    },
+                    created:function(){
+                    // created(){
+                        fetch('./data.json')
+                        .then((response) => {
+                            if(response.ok){                                
+                                return  response.json();
+                            }
+                            throw new Error('Network response was root ok');
+                        })                                
+                        .then((data) => {
+                            this.posts = data.item   
+                        })
+                        .catch((error) => {
+                            console.log(error);
+                        });
+                    }
+        });
+
+    </script>
+    
+</body>
+</html>
