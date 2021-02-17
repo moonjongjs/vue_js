@@ -9,7 +9,8 @@
 
     <style>
 
-        #app { width:150px;line-height:170%;margin:0 auto;text-align:center;}
+        #app { line-height:170%;text-align:center; }
+        #app ol { line-height:170%;display:inline-block;}
     </style>
 
 
@@ -20,7 +21,7 @@
 
     <div id="app">
         <ol>
-            <li v-for='i in addr'>{{i.이름}}</li>
+            <li v-for='(i, index) in addr'> 이름 : {{i.이름}}</li>
         </ol>
     </div>
 
@@ -30,14 +31,14 @@
               el:'#app',
               data:{
                   addr:[
-                      {이름:'이순신'},
-                      {이름:'김유신'},
-                      {이름:'유관순'},
-                      {이름:'김좌진'},
-                      {이름:'박재룡'},
-                      {이름:'강감찬'},
-                      {이름:'유지연'},
-                      {이름:'이수영'}
+                      {'이름':'이순신'},
+                      {'이름':'김유신'},
+                      {'이름':'유관순'},
+                      {'이름':'김좌진'},
+                      {'이름':'박재룡'},
+                      {'이름':'강감찬'},
+                      {'이름':'유지연'},
+                      {'이름':'이수영'}
                   ]
               }
           });

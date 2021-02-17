@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="./js/vue/vue.js"></script>
+    <script src="./vue/lib/axios.min.js"></script>    
+
+    <style>
+
+        #app { line-height:170%;text-align:center; }
+        #app ol { line-height:170%;display:inline-block;}
+    </style>
+
+
+</head>
+<body>
+    
+    <h1>반복문</h1>
+
+    <div id="app">
+        <ol>
+            <name-list 
+                v-bind:property='item' 
+                v-for='item in addr'>
+            </name-list>
+        </ol>
+    </div>
+
+    <script>
+          
+          const app = new Vue({
+              el:'#app',
+              data:{
+                  addr:[
+                      {id:1,이름:'이순신',phone:'010-7952-5305',age:35},
+                      {id:2,이름:'김유신',phone:'010-7952-5305',age:45},
+                      {id:3,이름:'유관순',phone:'010-7952-5305',age:33},
+                      {id:4,이름:'김좌진',phone:'010-7952-5305',age:25},
+                      {id:5,이름:'박재룡',phone:'010-7952-5305',age:26},
+                      {id:6,이름:'강감찬',phone:'010-7952-5305',age:27},
+                      {id:7,이름:'유지연',phone:'010-7952-5305',age:33},
+                      {id:8,이름:'이수영',phone:'010-7952-5305',age:35}
+                  ]
+              },
+              components:{
+                'name-list': {
+                    template:`
+                        <li> {{ property.id }}  {{ property.이름 }}  {{ property.phone }}  {{ property.age }}</li>
+                    `,
+                    props:['property']
+                }
+              }
+          });
+
+    </script>
+
+
+</body>
+</html>

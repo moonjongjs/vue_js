@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="./vue/lib/vue.js"></script>
+
+</head>
+<body>
+    
+
+      
+      <div id="app">
+        <br>
+        <h1>템플레이트 콘텐츠 컴포넌트 등록</h1>
+        <ol>
+            <comp-prop v-bind:mymessage="item" v-for='item in arr'></comp-prop>
+        </ol>
+      </div>
+
+    <script>
+
+        Vue.component('comp-prop',{
+            props:['mymessage'],
+            template:`
+                <li> {{ mymessage.name }}</li>
+            `
+        });
+
+        new Vue({
+            el:'#app',
+            data:{
+                arr:[
+                    {name:'문선종'},
+                    {name:'문종'},
+                    {name:'이순신'},
+                    {name:'김좌진'},
+                    {name:'류관순'}
+                ]
+            }
+        });
+
+    </script>
+
+
+</body>
+</html>
