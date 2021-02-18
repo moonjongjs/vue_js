@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>콤포넌트로_템플릿_지역컴포넌트_하위에서 상위로 이벤트발생_emit_발생</title>
+    <script src="./vue/lib/vue.js"></script>
+    <script src="./vue/lib/vue-router.js"></script>
+
+    <style>
+        a {font-size:100px;color:#c00;}
+        body,html {width:100%;height:100%;}
+        #app {width:100%;height:100%;}
+       
+        #login {z-index:1;position:relative;width:100%;height:100%;background:rgba(200,50,50, .1);font-size:50px;}
+        #main {z-index:1;position:relative;width:100%;height:100%;background:rgba(50,50,200, .1);font-size:50px;}
+        #header{z-index:2;position:absolute;top:0;left:0;}
+       
+    </style>
+</head>
+<body>
+    
+    <div id="app">
+        <header id='#header'>
+            <router-link to='/login'>로그인페이지버튼</router-link>
+            <router-link to='/main'>메인페이지버튼</router-link>
+        </header>    
+        <router-view></router-view>  
+    </div>
+
+
+    <script>
+
+        const logincomponent = {
+            template:`
+                <div id='login'>
+                    <button></button>
+                </div>
+            `
+        }
+        const maincomponent = {
+            template:`
+            <div id='main'>
+                <button></button>
+            </div>
+            `
+        }
+
+        const router = new VueRouter({
+            routes:[
+                {
+                    path:'/login',
+                    component:logincomponent
+                },
+                {
+                    path:'/main',
+                    component:maincomponent
+                }
+            ]
+        });
+
+        const obj = new Vue({
+            el:'#app',
+            router:router
+        });
+
+    </script>
+
+
+</body>
+</html>
