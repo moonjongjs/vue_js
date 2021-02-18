@@ -32,21 +32,18 @@
             data:{
                 arr:[]
             },
-            methods: {
+            methods : {
                 fetchData: function() {
                     axios.get('./data/mem.json')
-                    .then((obj) => {
-                        console.log(obj.data.member[0].userId);
-                        console.log(obj.data.member[0].title);
-                        console.log(obj.data.member[0].body);
-                        console.log(obj.data.member[1].userId);
-                        console.log(obj.data.member[2].userId);
-                        this.arr = obj.data.member;
-                        
-                        this.arr.forEach(function(row,idx){
-                            console.log(idx,row.userId,row.title,row.body);
+                    .then((res) => {  
+                        // axos는 data 가 붙는다 
+                        // fetch는 item 이 붙는다. 
+                        // console.log(res.data.member[0].userId);
+                        this.arr = res.data.member;
+                        res.data.member.forEach(function(row,idx){
+                            console.log(idx, row.userId, row.title, row.body);
                         }); 
-                    })
+                    })                 
                     .catch(function(error) {
                         console.log(error);
                     });

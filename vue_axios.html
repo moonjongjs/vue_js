@@ -31,14 +31,13 @@
             methods: {
                 fetchData: function() {
                     axios.get('./data/mem.json')
-                    // axios.post('./data/mem.json')
-                    .then((obj) => {
-                        console.log(obj.data.member[0].userId);
-                        console.log(obj.data.member[0].title);
-                        console.log(obj.data.member[0].body);
-                        console.log(obj.data.member[1].userId);
-                        console.log(obj.data.member[2].userId);
-                        this.arr = obj.data.member;
+                    .then((res) => {
+                        console.log(res.data.member[0].userId);
+                        console.log(res.data.member[0].title);
+                        console.log(res.data.member[0].body);
+                        console.log(res.data.member[1].userId);
+                        console.log(res.data.member[2].userId);
+                        this.arr = res.data.member;
                         
                         this.arr.forEach(function(row,idx){
                             console.log(idx,row.userId,row.title,row.body);
