@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <body>
+  <p>클로저를 사용한 Counting</p>
+
+  <script>
+        
+        const arr = new Array(5).fill();
+
+              arr.forEach((v, i, array) => array[i] = () => i);
+
+              arr.forEach(f => console.log(f()));
+
+  </script>
+
+</body>
+</html>

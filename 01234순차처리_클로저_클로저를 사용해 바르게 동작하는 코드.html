@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <body>
+  <p>클로저를 사용한 Counting</p>
+  <button id="inclease">+</button>
+  <p id="count">0</p>
+  <script>
+        
+        var arr = [];
+
+            for (var i = 0; i < 5; i++){
+            arr[i] = (function (id) { // ②
+                return function () {
+                return id; // ③
+                };
+            }(i)); // ①
+            }
+
+            for (var j = 0; j < arr.length; j++) {
+            console.log(arr[j]());
+            }
+
+
+  </script>
+
+</body>
+</html>
