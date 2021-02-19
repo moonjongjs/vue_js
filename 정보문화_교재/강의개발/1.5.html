@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>vue 시작하기!!</title>
+        <script src="./vue/lib/vue.js"></script>
+
+    </head>
+    <body>
+
+        <div id="start">
+            <h1>오늘의 날짜 : {{ date }} <br>  {{msg}}  </h1>
+            <input v-model='msg'>
+            <button v-on:click='autoPlay'>날짜 확인</button>
+        </div>
+
+        <script type="text/javascript">
+        let app = new Vue({
+            el: '#start',
+            data () {
+               return {
+                    date : new Date(),
+                    msg : 'moonjong'
+               }
+               
+            },
+            methods:{
+                autoPlay:function(){
+                    this.date = Date();
+                    return this.date;
+                }                
+            },
+            watch:{
+                msg: function(){
+                    console.log('메시지 데이터 값이 변경 되었습니다. : ', this.msg )
+                },
+                date: function(){
+                    console.log('날짜 데이터 값이 변경 되었습니다. : ', this.date )
+                }
+            },
+            created:function(){
+                setInterval(this.autoPlay,1000);
+            }
+
+            
+        })
+        </script>
+
+        <style>
+            #start { width:1200px;margin:0 auto;line-height:300px;background:#e9e9e9;text-align:center;color:#39b; }
+            input {height:60px;width:800px;border:1px solid #ccc; }
+        </style>
+
+    </body>
+</html>

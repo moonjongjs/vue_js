@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>vue 시작하기!!</title>
+        <script src="./vue/lib/vue.js""></script>
+    </head>
+    <body>
+
+<!--         
+        웹 페이지 링크 이동 실습
+        이미지 실습
+         -->
+    <div id="brando">   
+
+         <nav id="nav">
+            <ul>
+                <li><a href='#'>{{ link1 }}</a></li>
+                <li><a href='#'>{{ link2 }}</a></li>
+                <li><a href='#'>{{ link3 }}</a></li>
+                <li><a href='#'>{{ link4 }}</a></li>
+                <li><a href='#'>{{ link5 }}</a></li>
+            </ul>
+         </nav>
+
+         <div id="gallery">
+            <ul>
+                <li><img v-bind:src="src1" alt=""></li>
+                <li><img v-bind:src="src2" alt=""></li>
+                <li><img v-bind:src="src3" alt=""></li>
+                <li><img v-bind:src="src4" alt=""></li>
+                <li><img v-bind:src="src5" alt=""></li>
+                <li><img v-bind:src="src6" alt=""></li>
+                <li><img v-bind:src="src7" alt=""></li>
+                <li><img v-bind:src="src8" alt=""></li>
+            </ul>
+        </div>
+    </div>
+
+
+        <script type="text/javascript">
+        let app = new Vue({
+            el: '#brando',
+            data () {
+                return {
+                    link1: 'ALL',
+                    link2: 'BREAKFAST',
+                    link3: 'DINNER',
+                    link4: 'DRINKS',
+                    link5: 'LUNCH',
+
+                    src1: './img/restaurant-img25.jpg',
+                    src2: './img/restaurant-img26.jpg',
+                    src3: './img/restaurant-img27.jpg',
+                    src4: './img/restaurant-img28.jpg',
+                    src5: './img/restaurant-img29.jpg',
+                    src6: './img/restaurant-img30.jpg',
+                    src7: './img/restaurant-img31.jpg',
+                    src8: './img/restaurant-img32.jpg'
+                }
+            }
+        })
+        </script>
+
+        <style>
+            * {margin:0;padding:0;vertical-align:middle;}
+            html,body{width:100%;height:100%;}
+            body{font:normal 14px/1 'arial', 'selif';}
+            ul,li {list-style:none;}
+
+            #brando {max-width:1920px;width:100%;margin:0 auto;}
+            #brando #nav {text-align:center;padding:150px 0 70px 0;}
+            #brando #nav ul {display:inline-flex;}
+            #brando #nav ul li {display:inline-flex;margin:0 30px;}
+            #brando #nav ul li a {text-decoration:none;color:#39b;font-weight:600;font-size:16px;}
+            #brando #nav ul li a:hover {color:#933;}
+            #brando #gallery {width:100%;}
+            #brando #gallery ul {display:flex;flex-flow:wrap;}
+            #brando #gallery ul li {width:25%;}
+            #brando #gallery ul li img {width:100%;}
+        </style>
+
+
+    </body>
+</html>
