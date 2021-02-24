@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>클로저(Closure) 이해하기</title>
+</head>
+<body>
+    
+    <h1>get_set_예외처리_throw_new4</h1>
+
+    <script>
+       
+      let user = {
+          get name(){
+              return this._name;
+          },
+          set name(val){
+              console.log('name ',val);
+              console.log('name 길이 ',val.length);
+                
+              if( val.length < 3){
+                throw new  Error('3자 이상이어야 합니다.');
+              }
+              this._name = val;
+          }
+      }
+
+      user.name ='moonjong';
+      console.log( user.name );
+      user.name ='mj';
+
+    </script>
+
+</body>
+</html>
