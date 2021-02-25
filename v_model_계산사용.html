@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="./vue/lib/vue.js"></script>
+    <style>
+        #app2 {color:#c00;}
+    </style>
+</head>
+<body>
+    <div id="example">
+        x : <input type='text' v-model="x" v-on:keyup='fn1' /><br />
+        x : <input type='text' v-model="y" v-on:keyup='fn1' /><br />
+        덧셈 결과 : {{sum}}
+    </div>
+    <script type="text/javascript">
+    var vm = new Vue({
+        el : "#example",
+        data : { 
+            x:0,
+            y:0,
+            sum:0
+        },
+        methods:{
+            fn1 : function(z){
+                console.log(z);
+                this.sum = Number(this.x) + Number(this.y);
+            }
+        }
+    })
+    </script>
+
+
+</body>
+</html>

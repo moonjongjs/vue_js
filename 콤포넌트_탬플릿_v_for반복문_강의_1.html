@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="./vue/lib/vue.js"></script>
+    <style>
+        #app2 {color:#c00;}
+    </style>
+</head>
+<body>
+    
+    <div id="main">
+        <h1>{{ title }}</h1>
+        <comp-element></comp-element>
+    </div>
+
+
+    <script>
+
+        Vue.component('comp-element',{
+            data:function(){
+                return{
+                    과일:[
+                        {이름:'사과'},
+                        {이름:'배'},
+                        {이름:'파인애플'},
+                        {이름:'바나나'},
+                        {이름:'오렌지'}
+                    ]
+                }
+            },
+            template:`
+                <div class='fruit'>   
+                    <ol>
+                        <li v-for='item in 과일'>좋아하는 과일 : {{ item.이름 }}</li>
+                    </ol>
+                </div>
+            `
+        });
+
+
+        const app = new Vue({
+            el:'#main',
+            data:{
+                title:'Component Title!'                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+            }
+        });
+
+
+
+    </script>
+
+</body>
+</html>

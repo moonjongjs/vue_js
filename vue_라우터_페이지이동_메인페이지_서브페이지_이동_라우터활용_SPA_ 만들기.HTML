@@ -7,43 +7,80 @@
     <title>메인페이지 서브페이지 라우터 활용 SPA 페이지 이동 만들기</title>
     <script src="./vue/lib/vue.js"></script>
     <!-- <script src="./vue/lib/vue-router.js"></script> -->
-    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
-    <style>
+    <script src="./vue/lib/vue-router.js"></script>
+    <style> 
         *{margin:0;padding:0;}
-       
+        .main-btn {color:#39a;display:inline-block;padding:0 20px;background:#000;line-height:50px;text-decoration:none;color:#fff;}
+        .main-btn:hover {color:#fff;background:crimson;}
     </style>
 </head>
 <body>
 
 <div id="app">
-    <h1>안녕하세요!</h1>
-        <router-view></router-view>
-        <hr>
-    <div>라우터사용
-        <router-link to="/main">메인 페이지 이동</router-link>
-        <router-link to="/sub">서브 페이지 이동</router-link>
-    </div>
+    <header>
+        <router-link :class='main-btn' to="/home">홈 페이지 이동</router-link>
+        <router-link :class='main-btn' to="/main1">서브 페이지  main1 이동</router-link>
+        <router-link :class='main-btn' to="/main2">서브 페이지  main2 이동</router-link>
+        <router-link :class='main-btn' to="/main3">서브 페이지  main3 이동</router-link>
+        <router-link :class='main-btn' to="/main4">서브 페이지  main4 이동</router-link>
+        <router-link :class='main-btn' to="/main5">서브 페이지  main5 이동</router-link>
+    </header>
+    <main>
+       <section>
+            <h1>안녕하세요!</h1>
+            <router-view></router-view>
+       </section>
+    </main>
 </div>
 
 <script>
 
     //라우터에 등록할 컴포넌트 정의
-    const tmMain = {
-        template:`<h2>메인페이지입니다.</h2>`
+    const tmHome = {
+        template:`<h2>홈 입니다.</h2>`
     }
-    const tmSub = {
-        template:'<h1>서브페이지입니다.</h1>'
+    const tmMain1 = {
+        template:'<h1>서브페이지 tmMain1 입니다.</h1>'
+    }
+    const tmMain2 = {
+        template:'<h1>서브페이지 tmMain2 입니다.</h1>'
+    }
+    const tmMain3 = {
+        template:'<h1>서브페이지 tmMain3 입니다.</h1>'
+    }
+    const tmMain4 = {
+        template:'<h1>서브페이지 tmMain4 입니다.</h1>'
+    }
+    const tmMain5 = {
+        template:'<h1>서브페이지 tmMain5 입니다.</h1>'
     }
 
     const rtRoutes = [
         {
-            path:'/main',
-            component:tmMain
+            path:'/home',
+            component:tmHome
         },
         {
-            path:'/sub',
-            component:tmSub
+            path:'/main1',
+            component:tmMain1
+        },
+        {
+            path:'/main2',
+            component:tmMain2
+        },
+        {
+            path:'/main3',
+            component:tmMain3
+        },
+        {
+            path:'/main4',
+            component:tmMain4
+        },
+        {
+            path:'/main5',
+            component:tmMain5
         }
+
     ]
 
     const router = new VueRouter({
