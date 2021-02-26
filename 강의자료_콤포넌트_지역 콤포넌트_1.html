@@ -18,7 +18,7 @@
     <div id="header">
         <h1>콤포넌트_지역 콤포넌트</h1>
         <div>
-            <h2> Event $Emit : {{num}}</h2>
+            <h2> Event $Emit : {{ num}}</h2>
             <comp-header v-on:emitEvent='eventFn'></comp-header>
             <comp-main v-on:emitEvent='eventFn'></comp-main>
         </div>        
@@ -47,8 +47,7 @@
         let app = new Vue({
             el:'#header',
             components:{
-                'comp-header': compHeader,
-                'comp-main': compMain                
+                'comp-header': compHeader               
             },
             methods:{
                 eventFn:function(){

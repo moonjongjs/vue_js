@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>지역 콤포넌트</title>
+
+    <script src="./js/lib/jquery-1.12.4.min.js"></script>
+    <script src="./vue/lib/vue.js"></script>
+    <style>
+        *{margin:0;padding:0;}
+        #fruit{width:50%;margin:0 auto;}
+        h1,
+        h2{text-align:center;margin:50px 0;}
+        ol li {
+            margin:0 auto;            
+            list-style:none;
+        }
+        ol li a {font-size:20px;display:block;background:#444;color:#ccc;line-height:50px;text-align:center;text-decoration:none;transition:all .5s;border-radius:10px;border-bottom:1px solid #555;}
+        ol li a:hover {background:#222;color:#fff;font-size:25px;line-height:55px;}
+        
+    </style>
+</head>
+<body>
+    
+    <div id="fruit">
+
+        <h1>{{ msg }}</h1>
+        <h2>What is your Favourite fruit?</h2>
+
+        <div>
+            <favorite-fruit></favorite-fruit>
+        </div>
+    </div>
+
+
+    <script>
+
+        var favoriteFruit = {
+            template: `
+                <ol>
+                    <li  v-for='(item, index) in babo'>
+                        <a href='#' class='fruit-btn'  title='fruit'> {{ item.irum }} </a>
+                    </li>
+                </ol>
+            `,
+            data:function(){
+                return {
+                    babo:[
+                        {irum:'사과'},
+                        {irum:'바나나'},
+                        {irum:'오렌지'},
+                        {irum:'귤'},
+                        {irum:'자몽'},
+                        {irum:'파인애플'},
+                        {irum:'딸기'}
+                    ]
+                }
+            },
+            methods:{
+                fnFruit: function(){
+                    console.log( $(this).text() );
+                }
+            }
+        }
+
+        const fruit = new Vue({
+            el:'#fruit',
+            data:{
+                msg:'Which is your favorite fruit of all time?'               
+            },
+            components: {
+                'favorite-fruit' :  favoriteFruit
+            },
+            compute:function(){
+            // mounted:function(){
+                $('.fruit-btn').each(function(idx){
+                    $(this).on({
+                        mouseenter:function(){
+                            console.log( $(this).text() );
+                        }
+                    });
+                });
+            }
+
+        });
+
+    </script>
+
+</body>
+</html>

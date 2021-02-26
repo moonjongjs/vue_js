@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="./js/vue/vue.js"></script>
+
+    <style>
+        #app {text-align:center; }
+        h1 { }
+        h3 { background:#ddd;font-size:35px;color:#c00;text-align:center;}
+
+    </style>
+
+
+</head>
+<body>
+    
+    
+
+    <!-- html -->
+    <div id="app"> <!-- Vue 스코프(scope) -->
+        <h1>컴포넌트 등록 & 템플릿트</h1>
+        <h2>{{ num }}</h2>
+        <button @click='callFn'>여기를 클릭</button>
+        <babo-component v-bind:propsdata='num'></babo-component>  <!-- 컴포넌트 babo 가상 요소 -->
+    </div>
+
+
+    <!-- script -->
+    <script>
+
+        //지역 컴포넌트 
+        var baboComponent = {
+            props:['propsdata'],
+            template:`<button> 클릭 이벤트 {{ propsdata }}</button>`
+        }
+
+        const obj = new Vue({
+            el:'#app', 
+            data:{
+                num:0
+            },
+            methods:{
+                callFn: function(){
+                    this.num ++ ;
+                }
+            },
+            components:{
+                'babo-component': baboComponent
+            }
+        });
+
+    </script>
+  
+</body>
+</html>
