@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="./vue/lib/vue.js"></script>
+    <style>
+        #app2 {color:#c00;}
+    </style>
+</head>
+<body>
+    
+    <div id="main">
+        <h1>{{ title }}</h1>
+        <div class='fruit'>   
+            <ol>
+                <comp-element  v-for='item in 과일' v-bind:propsdata='item'></comp-element>
+            </ol>
+        </div>
+  
+    </div>
+
+
+    <script>
+
+
+
+        const app = new Vue({
+            el:'#main',
+            data:{
+                title:'Component Title!',
+                과일:[
+                    {이름:'사과'},
+                    {이름:'배'},
+                    {이름:'파인애플'},
+                    {이름:'바나나'},
+                    {이름:'오렌지'}
+                ]                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+            },
+            components:{
+                'comp-element':{
+                    props:['propsdata'],
+                    template:`<li>{{propsdata.이름}}</li>`
+                }
+            }
+        });
+
+
+
+    </script>
+
+</body>
+</html>

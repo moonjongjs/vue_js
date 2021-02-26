@@ -16,11 +16,10 @@
 <body>
     
     <div id="header">
-        <h1>콤포넌트_지역 콤포넌트</h1>
+        <h1>지역 콤포넌트에서 하위 콤포넌트에서 상위 콤포넌트에 이벤트전달</h1>
         <div>
             <h2> Event $Emit : {{num}}</h2>
-            <comp-header v-on:emitEvent='eventFn'></comp-header>
-            <comp-main v-on:emitEvent='eventFn'></comp-main>
+            <comp-header v-on:pass='eventFn'></comp-header>
         </div>        
     </div>
     
@@ -29,18 +28,12 @@
         var compHeader = {
             template: `
                     <button v-on:click='eventEmit'>click</button>
-                    <button v-on:click='eventAddnum'>add Number</button>            
             `,
             methods:{
                 eventEmit:function(){
-                    this.$emit('emitEvent');
-                },
-                eventAddnum:function(){
-                    this.$emit('increase');
+                    this.$emit('pass');
                 }
             }
-            
-
         }
 
 
@@ -48,7 +41,6 @@
             el:'#header',
             components:{
                 'comp-header': compHeader,
-                'comp-main': compMain                
             },
             methods:{
                 eventFn:function(){
