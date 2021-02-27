@@ -10,42 +10,107 @@
     </style>
 </head>
 <body>
-    
-    <div id="app">
-        <!-- <app-header v-bind:프롭스속성이름(프로퍼티)='상위콤포넌트 데이터 속성(프로퍼티)이름'></app-header> -->
-        <app-header :propsbind='num'></app-header>
-    </div>
 
-    <script>
+<div id="app">
+    <!-- <app-header v-bind:프롭스속성이름(프로퍼티)='상위콤포넌트 데이터 속성(프로퍼티)이름'></app-header> -->
+    <!-- <app-header v-on:$emit(하위콤포넌트이벤트)='상위콤포넌트 데이터 속성(프로퍼티)이름 message  num'></app-header> -->
+    <app-content v-bind:propsdata='irum, num'></app-content>
+    <app-header v-on:pass='passFn'></app-header>
+    <h1>{{ num }}</h1>
+</div>
 
-        var appHeader = {
-            template:`
-                <div>
-                <button v-on:click='passEvent'>{{ count }} | {{ propsbind }}</button>
-                </div>
-                `
-            ,
-            props:['propsbind', 'count'],
-            methods:{
-                passEvent:function(){
-                    this.$emit('pass');
-                    num += 100;
-                }
+<script>
+
+    var appHeader = {
+        template:`<button v-on:click='passEvent'>클릭</button>`,
+        methods:{
+            passEvent:function(){
+                this.$emit('pass');
             }
         }
+    }
 
-        new Vue({
-            el:'#app',
-            components:{
-                'app-header':appHeader
-            },
-            data:{
-                message:'HI MOONJONG click me!!!',
-                num:100
+    var appContent = {
+        props:['propsdata'],
+        template:'<h1>이름 : {{propsdata.이름}} </h1>'
+    }
+
+    new Vue({
+        el:'#app',
+        components:{
+            'app-header':appHeader,
+            'app-content':appContent
+        },
+        data:{
+            arr:[
+                {이름:'이순신'},
+                {이름:'김유신'},
+                {이름:'강감찬'},
+                {이름:'류관순'},
+                {이름:'문종'}
+            ],
+            irum:'',
+            num:-1
+        },
+        methods:{
+            passFn: function(){
+                this.num++
+                    this.num > 4 ? this.num=0 : this.num;
+                    this.num < 0 ? this.num=0 : this.num;
+                    this.irum = this.arr[this.num];
             }
-        });
+            
+        }
+    });
 
-    </script>
+    var obj = {
+        main1:{
+           sub:"서브메뉴1",
+           subsub:["서브서브메뉴1","서브서브메뉴2","서브서브메뉴3","서브서브메뉴4"],
+           subsubsub:[
+               ["서브서브서브1메뉴1","서브서브서브메뉴2","서브서브서브메뉴3","서브서브서브메뉴4"],
+               ["서브서브서브2메뉴1","서브서브서브메뉴2","서브서브서브메뉴3","서브서브서브메뉴4"],
+               ["서브서브서브3메뉴1","서브서브서브메뉴2","서브서브서브메뉴3","서브서브서브메뉴4"],
+               ["서브서브서브4메뉴1","서브서브서브메뉴2","서브서브서브메뉴3","서브서브서브메뉴4"]
+           ]
+        },
+        main2:{
+           sub:"서브메뉴1",
+           subsub:["서브서브메뉴1","서브서브메뉴2","서브서브메뉴3","서브서브메뉴4"],
+           subsubsub:[
+               ["서브서브서브1메뉴1","서브서브서브메뉴2","서브서브서브메뉴3","서브서브서브메뉴4"],
+               ["서브서브서브2메뉴1","서브서브서브메뉴2","서브서브서브메뉴3","서브서브서브메뉴4"],
+               ["서브서브서브3메뉴1","서브서브서브메뉴2","서브서브서브메뉴3","서브서브서브메뉴4"],
+               ["서브서브서브4메뉴1","서브서브서브메뉴2","서브서브서브메뉴3","서브서브서브메뉴4"]
+           ]
+       }
+        
+    }
+
+    // console.log(obj.main1);
+
+    // for(i in obj.main1.sub){
+    //     console.log(obj.main1.sub);
+    // }
+
+    // for(i in obj.main1.subsub){
+    //     console.log(obj.main1.subsub[i]);
+    // }
+
+        obj.main1.subsubsub.forEach(function(el,idx){
+            for(i in obj.main1.subsubsub[idx]){
+                console.log(idx , ' ', i, obj.main1.subsubsub[idx][i]);
+           }
+        })
+    
+    
+            // console.log(obj.main1.subsubsub.item[j]);
+     
+
+
+
+
+</script>
 
 
 </body>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue_콤포넌트로_엘리먼트 만들기</title>
+    <script src="./vue/lib/vue.js"></script>
+    <style>
+        *{margin:0;padding:0;}
+        h1{text-align:center;margin:50px 0;}
+        .fruit_style {
+            width:800px;
+            margin:0 auto;
+            border-bottom:1px solid #ddd;
+            padding:10px 0 10px 20px;
+            background:#f9f9f9;
+            list-style:none;
+        }
+    </style>
+</head>
+<body>
+    
+    <div id="main">
+        <h1>{{ sTile }}</h1>
+        <favorite-fruits></favorite-fruits>
+    </div>
+
+    <script>
+
+        //Vue 콤포너트 정의
+        Vue.component('favorite-fruits',{
+            data:function(){
+                return {
+                    aFruits:[
+                        {sFruit_name:'사과'},
+                        {sFruit_name:'바나나'},
+                        {sFruit_name:'오렌지'},
+                        {sFruit_name:'귤'},
+                        {sFruit_name:'자몽'},
+                        {sFruit_name:'파인애플'},
+                        {sFruit_name:'딸기'}
+                    ]
+                }
+            },
+            //Vue 콤포넌트 탬플릿 앨리먼트 구조 정의
+            template:`
+                <div>
+                    <ul v-for='(item, index) in aFruits' class='fruit_style'>
+                        <li>좋아하는 과일 :{{index+1}} {{item.sFruit_name}}</li>
+                    </ul>
+                </div>
+            `
+        });
+            
+
+        //Vue 생성
+        const obj = new Vue({
+            el:'#main',
+            data:{
+                sTile:'안녕하세요! 좋아하는 과일입니다.'
+            }
+        });
+
+    </script>
+
+</body>
+</html>

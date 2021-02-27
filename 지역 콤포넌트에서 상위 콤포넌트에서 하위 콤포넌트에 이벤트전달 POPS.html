@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>클래스_CLASS정의하기_</title>
+
+    <script src="./vue/lib/vue.js"></script>
+    <style>
+        #header {text-align:center;}
+        #header ol li {list-style-type:decimal;font-size:30px;color:#555;}
+        #header p {font-size:50px;color:#39a;}
+    </style>
+</head>
+<body>
+    
+    <div id="header">
+        <h1>지역 콤포넌트에서 상위 콤포넌트에서 하위 콤포넌트에 이벤트전달 POPS</h1>
+        <div>
+            <h2 v-on:click='eventFn'> Event props : {{num}}</h2>
+            <comp-header v-bind:propsdata='num'></comp-header>
+        </div>        
+    </div>
+    
+    <script>
+
+        var compHeader = {
+            props:['propsdata'],
+            template: `
+                    <button>{{propsdata}}</button>
+            `
+        }
+
+
+        let app = new Vue({
+            el:'#header',
+            components:{
+                'comp-header': compHeader,
+            },
+            methods:{
+                eventFn:function(){
+                    this.num++;
+                }
+            },
+            data:{
+                num:0
+            }
+        });
+
+
+    </script>
+
+
+    
+
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="./js/vue/vue.js"></script>
+
+    <style>
+
+        h1 { text-align:center; }
+        h3 { background:#ddd;font-size:70px;color:#c00;text-align:center;}
+
+    </style>
+
+
+</head>
+<body>
+    
+    <h1>컴포넌트 등록 & 템플릿트</h1>
+
+    <!-- html -->
+    <div id="app"> <!-- Vue 스코프(scope) -->
+        <h2>{{ txt }}</h2>
+        <button  @click='callFn'>이벤트 클릭</button>
+        <babo></babo>  <!-- 컴포넌트 babo 가상 요소 -->
+    </div>
+
+
+    <!-- script -->
+    <script>
+
+        //자식
+        //전역 컴포넌트 
+        Vue.component('babo',{
+            template:`<h3><i>전역 컴포넌트 등록할 템플릿트 요소 내용!!!!</i></h3>`
+        });
+
+        //부모
+        //모델 뷰
+        const obj = new Vue({
+            el:'#app', //scope(요소 범위)
+            data:{
+                txt:`Component(컴포넌트) & template(템플릿트)`
+            },
+            methods:{
+                callFn: function(){
+                    this.txt += ` 추가 내용 입니다. `;
+                }
+                
+            }
+        });
+
+    </script>
+  
+</body>
+</html>

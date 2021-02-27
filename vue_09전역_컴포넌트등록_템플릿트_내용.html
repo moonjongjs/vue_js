@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="./js/vue/vue.js"></script>
+
+    <style>
+
+        h1 { text-align:center; }
+        h3 { background:#ddd;font-size:70px;color:#c00;text-align:center;}
+        #box { width:500px;line-height:170%;font-size:15px;margin:0 auto;}
+    </style>
+
+
+</head>
+<body>
+    
+    <h1 v-on:click='compFn'>컴포넌트 등록 & 템플릿트 & 내용</h1>
+
+    <!-- html -->
+    <div id="app">
+        <comp1 v-bind:txtbind1='txt1'></comp1>
+        <comp2 v-bind:txtbind2='txt2'></comp2>
+        <comp3 v-bind:txtbind3='txt3'></comp3>
+        <comp4 v-bind:txtbind4='txt4'></comp4>
+    </div>
+
+    <!-- script -->
+    <script>
+
+        //자식
+        // 컴포넌트
+        /* 여러줄 만들 때 사용 \ 역 슬래쉬 줄끝의 의미 */
+        Vue.component('comp1',{
+            props:['txtbind1'],  //Property 속성 등록  =  txtbind
+            template:`<h2>{{ txtbind1 }}</h2>`
+        });
+        Vue.component('comp2',{
+            props:['txtbind2'],  //Property 속성 등록  =  txtbind
+            template:`<h2>{{ txtbind2 }}</h2>`
+        });
+        Vue.component('comp3',{
+            props:['txtbind3'],  //Property 속성 등록  =  txtbind
+            template:`<h2>{{ txtbind3 }}</h2>`
+        });
+        Vue.component('comp4',{
+            props:['txtbind4'],  //Property 속성 등록  =  txtbind
+            template:`<h2>{{ txtbind4 }}</h2>`
+        });
+
+
+        //부모
+        var obj = new Vue({
+            el:'#app',
+            data:{
+                txt1:`컴포넌트1 Data 메시지1 ^^`,
+                txt2:`컴포넌트1 Data 메시지1 ^^`,
+                txt3:`컴포넌트1 Data 메시지1 ^^`,
+                txt4:`컴포넌트1 Data 메시지1 ^^`
+            },
+            methods:{
+               
+                compFn:function(){
+                    this.txt1 = `컴포넌트1 methods Lyfe Cycle`;
+                    this.txt2 = `컴포넌트2 methods Lyfe Cycle`;
+                    this.txt3 = `컴포넌트3 methods Lyfe Cycle`;
+                    this.txt4 = `컴포넌트4 methods Lyfe Cycle`;
+                }
+
+                
+            },
+            beforeCreate:function(){       
+                    
+                this.txt1 = `컴포넌트1 beforeCreate Lyfe Cycle`;
+                this.txt2 = `컴포넌트2 beforeCreate Lyfe Cycle`;
+                this.txt3 = `컴포넌트3 beforeCreate Lyfe Cycle`;
+                this.txt4 = `컴포넌트4 beforeCreate Lyfe Cycle`;
+            },            
+            created:function(){
+              
+                this.txt1 = `컴포넌트1 created Lyfe Cycle`;
+                this.txt2 = `컴포넌트2 created Lyfe Cycle`;
+                this.txt3 = `컴포넌트3 created Lyfe Cycle`;
+                this.txt4 = `컴포넌트4 created Lyfe Cycle`;
+            },
+            beforeUpdate:function(){
+               
+                this.txt1 = `컴포넌트1 beforeUpdate Lyfe Cycle`;
+                this.txt2 = `컴포넌트2 beforeUpdate Lyfe Cycle`;
+                this.txt3 = `컴포넌트3 beforeUpdate Lyfe Cycle`;
+                this.txt4 = `컴포넌트4 beforeUpdate Lyfe Cycle`;
+            },
+            updated:function(){
+               
+                this.txt1 = `컴포넌트1 beforeUpdate Lyfe Cycle`;
+                this.txt2 = `컴포넌트2 beforeUpdate Lyfe Cycle`;
+                this.txt3 = `컴포넌트3 beforeUpdate Lyfe Cycle`;
+                this.txt4 = `컴포넌트4 beforeUpdate Lyfe Cycle`;
+            }
+
+        });
+
+    </script>    
+
+</body>
+</html>

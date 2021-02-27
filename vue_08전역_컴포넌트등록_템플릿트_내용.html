@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="./js/vue/vue.js"></script>
+
+    <style>
+        body {text-align:center}
+        h1 { text-align:center; }
+        h3 { background:#ddd;font-size:70px;color:#c00;text-align:center;}
+    </style>
+
+
+</head>
+<body>
+    
+    <h1>컴포넌트 등록 & 템플릿트 & 내용</h1>
+
+    <!-- html -->
+    <div id="app">
+        <button v-on:click='comFn1'>콤포넌트 클릭 호출1</button>
+        <button v-on:click='comFn2'>콤포넌트 클릭 호출2</button>
+        <comp1 v-bind:txtbind1='txt1'></comp1>  
+        <comp2 v-bind:txtbind2='txt2'></comp2>  
+    </div>
+
+
+    <!-- script -->
+    <script>
+
+        //자식
+        // 컴포넌트
+        //상위에서 하위에게 전달하는 것을 props 
+        function comFn() { 
+            Vue.component('comp1',{
+                props:['txtbind1'],  //Property 속성 등록  =  txtbind
+                template:'<h1><mark>{{ txtbind1 }}</mark></h1>'
+            });
+
+            Vue.component('comp2',{
+                props:['txtbind2'],  //Property 속성 등록  =  txtbind
+                template:`<h1><mark>{{ txtbind2 }}</mark></h1>`
+            });
+        }
+        comFn();
+
+        var obj = new Vue({
+            el:'#app',
+            data:{
+                txt1:'', 
+                txt2:'' 
+            },
+            methods:{
+                comFn1:function(){
+                    
+                    this.txt1='콤포넌트1 텍스트!!!';
+                    comFn();
+                },
+                comFn2:function(){
+                    this.txt2='';
+                    for(i=1;i<=10;i++){
+                        if(i>1){
+                            this.txt2 += ', ' + i;
+                        }
+                        else {
+                            this.txt2 += i;
+                        }
+                        
+                    }
+                    
+                    comFn();
+                }
+            },
+            
+        });
+
+    </script>    
+
+</body>
+</html>
