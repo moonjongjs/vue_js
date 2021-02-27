@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>디렉티브 v-for 반복문</title>
+    <!-- 오픈소스  -->
+    <script src="./vue/lib/vue.js"></script>
+
+    <style>
+        h1 {text-align:center;}
+        table {width:600px;margin:0 auto;border-collapse:collapse;}
+        table th {background:#f0f0f0;}
+        table th,td {border:1px solid #ccc;text-align:center;height:45px;}
+
+    </style>
+
+</head>
+<body>
+
+    <!-- HTML -->
+    <div id="app">
+        <h1>지인 연락처</h1>
+        <table>
+            <tr><th> 이름 </th> <th> 휴대폰 </th></tr>
+            <tr v-for='el in addr'><td> {{ el.이름 }} </td> <td> {{ el.휴대폰 }} </td></tr>
+        </table>
+    </div>
+
+    <!-- Vue.js -->
+    <script>
+        var obj = new Vue({
+            el:'#app',  //Root
+            data:{ //프로퍼티(멤버변수)설정
+                addr:[
+                    {이름:'이순신',휴대폰:'010-7942-5305'},
+                    {이름:'이혁재',휴대폰:'010-7233-1305'},
+                    {이름:'차범근',휴대폰:'010-3942-5312'},
+                    {이름:'안중근',휴대폰:'010-4942-5305'},
+                    {이름:'박소희',휴대폰:'010-5642-3305'}
+                ]
+            }
+        });
+    </script>
+
+
+</body>
+</html>

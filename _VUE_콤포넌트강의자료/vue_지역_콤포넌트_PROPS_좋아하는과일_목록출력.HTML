@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>지역 콤포넌트</title>
+    <script src="./vue/lib/vue.js"></script>
+    <style>
+        *{margin:0;padding:0;}
+        #fruit{width:50%;margin:0 auto;}
+        h1,
+        h2{text-align:center;margin:50px 0;}
+        ol li {
+            margin:0 auto;            
+            list-style:none;
+        }
+        ol li a {font-size:20px;display:block;background:#444;color:#ccc;line-height:50px;text-align:center;text-decoration:none;transition:all .5s;border-radius:10px;border-bottom:1px solid #555;}
+        ol li a:hover {background:#222;color:#fff;font-size:25px;line-height:55px;}
+        
+    </style>
+</head>
+<body>
+    
+    <div id="fruit">
+
+        <h1>{{ msg }}</h1>
+        <ol>
+            <favorite-fruit v-for='item in fruits' v-bind:title='item.fname' v-bind:propsdata='item.fname' v-if='item.jego'></favorite-fruit>
+        </ol>
+        <h2>What is your Favourite fruit?</h2>
+    </div>
+
+
+    <script>
+
+        var favoriteFruit = {
+            props:['propsdata'],
+            template: `<li><a href='#'> {{ propsdata }} </a></li>`  
+        }
+
+        const fruit = new Vue({
+            el:'#fruit',
+            data:{
+                msg:'Which is your favorite fruit of all time?',
+                fruits:[
+                    {jego:true,fname:'사과'},
+                    {jego:true,fname:'바나나'},
+                    {jego:true,fname:'오렌지'},
+                    {jego:true,fname:'귤'},
+                    {jego:false,fname:'자몽'},
+                    {jego:true,fname:'파인애플'},
+                    {jego:true,fname:'딸기'}
+                ]
+            },
+            components: {
+                'favorite-fruit' :  favoriteFruit              
+            }
+
+        });
+
+    </script>
+
+</body>
+</html>

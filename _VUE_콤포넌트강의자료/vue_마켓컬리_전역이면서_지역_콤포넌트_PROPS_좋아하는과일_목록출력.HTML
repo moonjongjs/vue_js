@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>지역 콤포넌트</title>
+    <script src="./vue/lib/vue.js"></script>
+    <style>
+        *{margin:0;padding:0;}
+        #fruit{width:50%;margin:0 auto;}
+        h1,
+        h2{text-align:center;margin:50px 0;}
+        ol li {
+            margin:0 auto;            
+            list-style:none;
+        }
+        ol li a {font-size:20px;display:block;background:#444;color:#ccc;line-height:50px;text-align:center;text-decoration:none;transition:all .5s;border-radius:10px;border-bottom:1px solid #555;}
+        ol li a:hover {background:#222;color:#fff;font-size:25px;line-height:55px;}
+        
+    </style>
+</head>
+<body>
+
+    <div id="kurlyMain">
+
+        <h2> main1-component 생성 {{ type }} </h2>
+
+        <main1-component v-bind:section='el.book' v-for='el in mainData'></main1-component>
+
+    </div>
+
+
+
+    <script>
+            
+        var type1 = {
+            props:['section', 'type'],
+            template:`<h1> {{ section }} </h1>`
+        };
+        
+
+
+
+        var kurlyMain = new Vue({
+            el: '#kurlyMain',
+            data: {
+                mainData : [
+                    {book:'Do it! Vue.js입문'},
+                    {book:'타입 스크립트 프로그래밍'},
+                    {book:''},
+                    {book:'Node.js 노드js 200제'}
+                ],
+                type : 'mobile'
+            },
+            components: {
+                'main1-component': type1
+            }
+        });
+
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
+</html>

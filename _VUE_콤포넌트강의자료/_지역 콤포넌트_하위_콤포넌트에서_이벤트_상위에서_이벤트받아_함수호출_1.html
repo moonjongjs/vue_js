@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>클래스_CLASS정의하기_</title>
+
+    <script src="./vue/lib/vue.js"></script>
+    <style>
+        #header {text-align:center;}
+        #header ol li {list-style-type:decimal;font-size:30px;color:#555;}
+        #header p {font-size:50px;color:#39a;}
+    </style>
+</head>
+<body>
+    
+    <div id="header">
+        <h1>콤포넌트_지역 콤포넌트</h1>
+        <div>
+            <h2> Event $Emit : {{ num }}</h2>
+            <comp-header v-on:pass='eventFn'></comp-header>
+        </div>        
+    </div>
+    
+    <script>
+
+        var compHeader = {
+            template: `
+                    <button v-on:click='eventEmit'>click</button>
+            `,
+            methods:{
+                eventEmit:function(){
+                    this.$emit('pass');
+                }
+            }
+        }
+
+
+        let app = new Vue({
+            el:'#header',
+            components:{
+                'comp-header': compHeader               
+            },
+            methods:{
+                eventFn:function(){
+                    this.num++;
+                }
+            },
+            data:{
+                num:0
+            }
+        });
+
+
+    </script>
+
+
+    
+
+</body>
+</html>

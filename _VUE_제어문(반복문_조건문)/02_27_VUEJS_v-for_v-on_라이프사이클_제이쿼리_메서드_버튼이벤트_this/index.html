@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>디렉티브 v-for 반복문 & v-on:이벤트 @click 뷰 라이프 사이클 & 제이쿼리 사용</title>
+    <!-- 오픈소스  -->
+    <script src="./js/lib/jquery.min.js"></script>    
+    <script src="./vue/lib/vue.js"></script>
+
+    <style>
+        #header {
+            text-align: center;
+        }
+    </style>
+
+</head>
+<body>
+
+    <!-- html 요소 영역 -->
+    <div id="header">
+        <h1 class='h1-btn'>헤더 영역의 뷰 라이프 사이클</h1>
+        <h2> 머스테시 표시안에 데이터 속성(멤버변수)에 출력  {{ msg }} </h2>
+        <button @click='price'>제품가격 클릭</button>
+        <h1> {{ num }}</h1>
+        <p v-on:click='price'> 제품 가격은 {{ num }} 입니다. </p>
+        <p v-on:mouseenter='price'> 제품 가격은 {{ num }} 입니다. </p>
+        <p @click='product'> 'v-on:' 디렉티브를 '@' 디렉티브[ @click='product' ] 특수문자롤 대체사용 제품 가격은 {{ num }} 입니다. </p>
+    </div>
+
+
+    <!-- 스크립트 영역 -->
+    <script>
+
+        const header = new Vue({ //뷰의 인스턴스 생성
+            el:'#header',
+            data:{
+                msg : '뷰 인스턴스 데이터 메시지',
+                num : 590
+            },
+            methods:{  //메서드 관리해주는 속성
+
+                // 메서드 == 리터럴 함수 == 익명함수
+                product: function(){
+                    // let that = this;
+                    let that = header;
+                    // header.num = 100
+                    // this.num = 100;
+                    that.num += 100;
+                    this.msg = '데이터 메시지 수정';
+                },
+                price: function(){
+                    this.num += 100000;
+                }
+            },            
+            beforeCreate: function(){
+                console.log('뷰 생명주기 beforeCreate');
+            },
+            created: function(){
+                console.log('뷰 생명주기 created');
+
+            },
+            beforeMounte:function(){
+                console.log('뷰 생명주기 beforeMounte');
+            },
+            mounted:function(){
+                let that = this; //인스턴스 객체이름
+
+                console.log('뷰 생명주기 mounted  제이쿼리와 라이브러등 사용 가능 합니다.');
+
+                //마운트(Mounted)단계사 제이쿼리 사용 가능)
+                $('.h1-btn').on({
+                    click: function(){
+                        that.num += 590; //버튼 자신을 this  $('.h1-btn')
+                       console.log('mounted 제이쿼리 버튼 클릭 이벤트 ', that.num );
+                    },
+                    focusin:function(){
+                        console.log('focusin');
+                    },
+                    mouseenter:function(){
+                        console.log('mouseenter');
+                    }
+                });
+
+                // $('.h1-btn')
+                // .on('click', function(){
+                //     alert('제이쿼리 클릭 이벤트'); 
+                // })
+                // .on('mouseenter', function(){
+                //     alert('제이쿼리 클릭 이벤트'); 
+                // })
+                // .on('mouseleave', function(){
+                //    // alert('제이쿼리 클릭 이벤트'); 
+                // });
+
+            },
+            beforeUpdate:function(){
+                console.log('뷰 생명주기 beforeUpdate 실제 업데이트 수정은 여기서');
+
+            },
+            updated:function(){
+                console.log('뷰 생명주기 updated 여기는 수정된 결과만');
+            },
+            beforeDestory:function(){
+                console.log('뷰 생명주기 beforeDestory');
+            },
+            destroyed:function(){
+                console.log('뷰 생명주기 destroyed');
+            }
+        });
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>디렉티브 v-for 반복문 & v-on:이벤트 @click 뷰 라이프 사이클 & 제이쿼리 사용</title>
+    <!-- 오픈소스  -->
+    <script src="./js/lib/jquery.min.js"></script>    
+    <script src="./vue/lib/vue.js"></script>
+
+    <style>
+
+    </style>
+
+</head>
+<body>
+<!-- 
+    헤딩은 data에 정의된 멤버변수를 활용한다.
+    웹문서에 고객 이름을 순서있는 목록에 반복 출력 합니다
+    그리고 데이터는 뷰의 data 속성에 객체 배열(memberList)로된 데이터를 활용한다.
+-->
+
+    <div id="member">
+        <h1> {{ title }}  </h1>
+        <ul>
+            <li  v-for='(el, index) in memberList' v-if='!el.참가'>{{ index+1 }}. 고객 이름 : {{ el.이름 }}  전화 : {{ el.전화 }}    행사참여 : {{ el.참가 }} </li>
+        </ul>
+    </div>
+
+
+    <script>
+        const  member = new Vue({
+            el:'#member',
+            data:{
+                title:'정기 고객 리스트',
+                memberList:[
+                    {이름:'강민명', 전화:'010-7942-5305', 참가:true},
+                    {이름:'고한나', 전화:'010-1942-2305', 참가:false},
+                    {이름:'김근용', 전화:'010-0942-5305', 참가:true},
+                    {이름:'박나리', 전화:'010-7242-2305', 참가:false},
+                    {이름:'배수빈', 전화:'010-9911-1105', 참가:true},
+                    {이름:'서혜리', 전화:'010-7942-5305', 참가:false},
+                    {이름:'유지연', 전화:'010-6942-1305', 참가:false},
+                    {이름:'윤용준', 전화:'010-5942-4305', 참가:true},
+                    {이름:'임하리', 전화:'010-4942-2305', 참가:true},
+                    {이름:'정에진', 전화:'010-3942-5305', 참가:true},
+                    {이름:'정지인', 전화:'010-2942-5235', 참가:false}
+                ]
+            }
+        });
+    </script>
+
+
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="./js/vue/vue.js"></script>
+
+    <style>
+        * {margin:0;padding:0;vertical-align:middle;border:0;}
+        body{text-align:center;}
+        
+            h1 {color:#39b;font-size:40px;margin-top:50px;}    
+            h2 {color:#39b;font-size:20px;margin-top:20px;}    
+
+            #app {padding-top:50px;}
+            select {width:200px;height:45px;padding:5px 10px;border:1px solid #ccc;background:#fff;font-size:16px;}
+    
+    </style>
+
+</head>
+<body>
+    
+    <h1>v-model 디렉티브 이벤트 셀렉트 목록 상자</h1>
+    
+    <div id="app">
+
+        <select  v-model="selected" name="listBox" id="listBox">
+            <option v-for='i in option' v-bind:value="i.value">{{ i.text }}</option>  <!-- 반복 출력  객체 option 속성 키.키값   i.값 -->
+        </select>   
+
+        <h2>내가 가장 좋아하는 음식 : {{  selected  }} </h2>
+    </div>
+
+    <script>
+
+        const obj = new Vue({
+            el:'#app',
+            data:{
+                
+                selected:'쫄면',  //v-model 연결  [] 브라켓 사용 안함
+
+                option:[
+                   {text:'라볶이', value:'라볶이'},
+                   {text:'쫄면', value:'쫄면'},
+                   {text:'라면', value:'라면'},
+                   {text:'라면', value:''},
+                   {text:'평양갈비찜', value:''},
+                   {text:'평양갈비찜', value:'평양갈비찜'},
+                   {text:'부대찌게', value:'부대찌게'}
+                ]
+                
+            }
+        });
+
+    </script>
+
+
+    
+
+
+</body>
+</html>
