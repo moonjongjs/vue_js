@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>watch 사용</title>
+    <script src="./vue/lib/vue.js"></script>
+
+    <style>
+
+        
+
+    </style>
+
+</head>
+<body>
+
+    <div id='app'>
+        <input type="text" v-model='num'>
+        <h2 :v-html='바보'>{{sum}}</h2>
+    </div>
+    
+    <script>
+        var obj = new Vue({
+            el:'#app',
+            data:{
+                num:0,
+                hap:0
+            },
+            computed:{
+                sum:function(){
+                
+                    var i=-1;
+
+                //    for(i=0; i<=Number(this.num); i++){
+                //        this.hap += i;
+                //    }
+
+                        while(i<Number(this.num)){
+                            i++;
+                            this.hap += i;
+                            
+                        }
+                        return  this.hap;
+                }
+            },
+            watch:{
+                num:function(){
+                    console.log( this.sum );
+                }
+                
+            }
+
+        });
+    </script>
+
+</body>
+</html>
