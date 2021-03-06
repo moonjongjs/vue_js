@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>콤퍼넌트_전역콤퍼넌트_템플릿</title>
+    
+    <!-- 오픈소스  -->
+    <script src="./js/lib/jquery.min.js"></script>    
+    <script src="./vue/lib/vue.js"></script>
+
+<style>
+    #app {
+        text-align: center;
+    }
+
+</style>
+
+</head>
+<body>
+<div id="wrap">
+
+    <div id="app">
+
+        <h1>버튼 클릭 이벤트로 상위 콤포넌트에서 하위 콤포넌트로의 통신 : PROPS 사용 합니다.</h1>
+        <button v-on:click='countFn'>Click!!!</button>
+        <app-comp  v-bind:propsdata='num'></app-comp>
+
+    </div>
+
+
+
+    <script>
+
+        var appComp = {
+            props:['propsdata'],
+            template:'<h1> 지역콤포넌트 템프릿 내용 {{ propsdata }} </h1>'
+        }
+
+
+        var app = new Vue({
+            el:'#app',
+            data:{
+                num:1000000
+            },
+            components:{
+                'app-comp': appComp
+            },
+            methods:{
+                countFn:function(){
+                    this.num += 100000;
+                }
+            },
+            watch:{ //감시자
+                num: function(){
+                    console.log('데이터 변환 ', this.num );
+                }
+            }
+        });
+
+    </script>
+
+
+</div>
+</body>
+</html>

@@ -18,11 +18,7 @@
     <div id="header">
         <h1>지역 콤포넌트에서 하위 콤포넌트에서 상위 콤포넌트에 이벤트전달</h1>
         <div>
-<<<<<<< HEAD:_VUE_콤포넌트강의자료/_지역 콤포넌트_하위_콤포넌트에서_이벤트_상위에서_이벤트받아_함수호출_1.html
-            <h2> Event $Emit : {{ num }}</h2>
-=======
             <h2> Event $Emit : {{num}}</h2>
->>>>>>> 88a4b82b09cfe857cd2740db4ced13e5c93611b5:지역 콤포넌트에서 하위 콤포넌트에서 상위 콤포넌트에 이벤트전달.html
             <comp-header v-on:pass='eventFn'></comp-header>
         </div>        
     </div>
@@ -44,11 +40,7 @@
         let app = new Vue({
             el:'#header',
             components:{
-<<<<<<< HEAD:_VUE_콤포넌트강의자료/_지역 콤포넌트_하위_콤포넌트에서_이벤트_상위에서_이벤트받아_함수호출_1.html
                 'comp-header': compHeader               
-=======
-                'comp-header': compHeader,
->>>>>>> 88a4b82b09cfe857cd2740db4ced13e5c93611b5:지역 콤포넌트에서 하위 콤포넌트에서 상위 콤포넌트에 이벤트전달.html
             },
             methods:{
                 eventFn:function(){
