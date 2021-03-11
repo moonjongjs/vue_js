@@ -17,14 +17,25 @@
 
     <script>
 
+
+
+
         var appHeader = {
-            template:'<h1> {{ propsbind1 }} </h1>',
-            props:['propsbind1']
+            props:['propsbind1'],
+            template:'<h1> {{ propsbind1 }} </h1>'
         }
         var appContent = {
-            template:'<h3> {{ propsbind2 }} </h3>',
-            props:['propsbind2']
+            props:['propsbind2'],            
+            template:'<h3> {{ propsbind2 }} </h3>'
+            
         }
+
+        Vue.filter("appContent",function(num){
+            num = String(num);
+            return num.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
+            console.log('필터실행' );
+        });
+ 
 
         new Vue({
             el:'#app',
