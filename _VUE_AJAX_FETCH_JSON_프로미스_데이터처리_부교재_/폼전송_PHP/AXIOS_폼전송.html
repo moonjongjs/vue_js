@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>axios (AJAX)</title>
+    <script src="./vue/lib/vue.js"></script>
+    <script src="./vue/lib/axios.min.js"></script>
+    <style>
+        *{margin:0;padding:0;vertical-align:top;}
+        #app{width:500px;margin:0 auto;}
+        input,
+        textarea {width:300px;height:40px;border:1px solid #ccc;}
+        button {display:block;padding:15px 0;background:#000;color:#fff;width:100%;cursor: pointer;}
+        textarea {height:200px;}
+        label {width:100px;display:inline-block;}
+        div {padding:5px 0;}
+        .button-box {text-align:center;}
+
+    </style>
+</head>
+<body>
+    
+    <div id="app">
+        <form name="form_member">
+            <div>
+                <label for="irum">이름</label>
+                <input type="text" name="irum" id="irum" v-model='irum' placeholder='Your irum'>
+            </div>
+            <div>
+                <label for="email">이메일</label>
+                <input type="text" name="email" id="email"  v-model='email' placeholder='Your email'>
+            </div>            
+            <div>
+                <label for="message">메시지</label>
+                <textarea name='message' id='message' class='message'  v-model='message' placeholder='Your Message'></textarea>
+            </div>            
+            <div class="button-box">
+                <button v-on:click.prevent="formData">폼전송</button>
+                <!-- <input type="submit" value="아이디 비번 폼전송"> -->    
+            </div>            
+        </form>
+
+
+
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data:{
+                arr:[],
+                irum:'',
+                email:'',
+                message:''
+            },
+            methods: {
+                formData: function(){
+
+                    var url = './data/reponse.php';
+                    var data = {
+                        irum : this.irum,
+                        email : this.email,
+                        message : this.message
+                    }
+
+                    console.log( data.irum );
+                    console.log( data.email );
+                    console.log( data.message );
+
+                    axios.post(url, data)
+                        .then((res) => {
+                            // console.log(res.data.member[0].userId);
+                            console.log(res);
+                            console.log(res.data);
+                            
+                            this.arr = res.data;                        
+                            this.arr.forEach(function(row,idx){
+                                console.log(idx,row);
+                            }); 
+                        })
+                        .catch(function(error) {
+                            console.log(error);
+                        });
+                }
+            },
+            mounted:function(){
+
+              
+            }
+        })
+    </script>
+
+</body>
+</html>

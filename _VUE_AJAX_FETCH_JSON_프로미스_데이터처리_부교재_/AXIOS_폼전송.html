@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>axios (AJAX)</title>
+    <script src="./vue/lib/vue.js"></script>
+    <script src="./vue/lib/axios.min.js"></script>
+
+</head>
+<body>
+    
+    <div id="app">
+        <form name="form_member">
+            <div>
+                <label for="irum">이름</label>
+                <input type="text" name="irum" id="irum" v-model='irum'>
+            </div>
+            <div>
+                <label for="email">이메일</label>
+                <input type="text" name="email" id="email"  v-model='email'>
+            </div>            
+            <div>
+                <label for="message">메시지</label>
+                <textarea name='message' id='message' class='message' placeholder='Your Message'></textarea>
+            </div>            
+        </form>
+
+        <button v-on:click="formData">폼전송</button>
+        <!-- <input type="submit" value="아이디 비번 폼전송"> -->
+
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data:{
+                irum:'',
+                email:'',
+                message:''
+            },
+            methods: {
+                fetchData: function() {
+                    axios.post('./data/mem.json')
+                    .then((res) => {
+                        console.log(res.data.member[0].userId);
+                        console.log(res.data.member[0].title);
+                        console.log(res.data.member[0].body);
+                        console.log(res.data.member[1].userId);
+                        console.log(res.data.member[2].userId);
+                        this.arr = res.data.member;
+                        
+                        this.arr.forEach(function(row,idx){
+                            console.log(idx,row.userId,row.title,row.body);
+                        }); 
+                    })
+                    .catch(function(error) {
+                        console.log(error);
+                    });
+                }
+
+                
+            }
+        })
+    </script>
+
+</body>
+</html>
